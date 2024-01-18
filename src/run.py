@@ -1,12 +1,11 @@
 from prosimos.simulation_engine import *
 import json
-from simulation_utils import update_sim_params, run_simulation
+from src.simulation_utils import update_sim_params, run_simulation
 from pm4py.objects.log.importer.xes import importer as xes_importer
-from utils import set_start_timestamp_from_alpha
-from temporal_utils import find_execution_distributions
+from src.utils import set_start_timestamp_from_alpha
+from src.temporal_utils import find_execution_distributions, compute_wass_dist_execution
 import pm4py
 import pandas as pd
-from temporal_utils import compute_wass_dist_execution
 
 bpmn_path = 'data/purchasing_example.bpmn'
 json_path = 'data/purchasing_example.json'

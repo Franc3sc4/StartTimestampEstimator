@@ -2,7 +2,7 @@ import numpy as np
 import pm4py
 from datetime import timezone
 from scipy.stats import norm, expon, uniform, triang, lognorm, gamma, wasserstein_distance
-from distribution_utils import find_best_fit_distribution
+from src.distribution_utils import find_best_fit_distribution
 
 possible_distributions = [
     'fix',

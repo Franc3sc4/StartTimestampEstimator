@@ -41,7 +41,8 @@ def find_best_fit_distribution(observed_values, N=None):
             generated_values[distr_name] = triang(c=(distr_params[distr_name]['c'] - distr_params[distr_name]['loc'])/(distr_params[distr_name]['scale'] - distr_params[distr_name]['loc']), loc=distr_params[distr_name]['loc'], scale = distr_params[distr_name]['scale'] - distr_params[distr_name]['loc']).rvs(size=N)
         elif distr_name == 'lognorm':
             distr_params[distr_name] = {'loc': np.mean(observed_values), 'scale': np.std(observed_values)}
-            generated_values[distr_name] = lognorm(s = distr_params[distr_name]['scale'], loc = 0, scale = np.exp(distr_params[distr_name]['loc'])).rvs(size=N)
+            #generated_values[distr_name] = lognorm(s = distr_params[distr_name]['scale'], loc = distr_params[distr_name]['loc'], scale = np.exp(distr_params[distr_name]['loc'])).rvs(size=N)
+            generated_values[distr_name] = lognorm(distr_params[distr_name]['scale'], scale=np.exp(np.log(distr_params[distr_name]['loc'])-0.5*distr_params[distr_name]['scale']**2)).rvs(size=N)
         elif distr_name == 'gamma':
             distr_params[distr_name] = {'loc': np.mean(observed_values), 'scale': np.std(observed_values)}
             generated_values[distr_name] = gamma(a=distr_params[distr_name]['loc'], loc = distr_params[distr_name]['loc'], scale=distr_params[distr_name]['scale']).rvs(size=N)
