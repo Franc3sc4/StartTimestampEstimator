@@ -39,7 +39,7 @@ def find_execution_distributions(log):
     """
     activities_extimes = compute_execution_times(log)
     activities = list(activities_extimes.keys())
-    exec_distr = {a: find_best_fit_distribution(activities_extimes[a])[:2] for a in activities}
+    exec_distr = {a: find_best_fit_distribution(activities_extimes[a]) for a in activities}
 
     return exec_distr
 

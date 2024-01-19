@@ -9,7 +9,7 @@ def update_sim_params(json_data, diffsim_info, best_distr_act_execution):
         distr_act = best_distr_act_execution[act]
         for j in range(len(json_data["task_resource_distribution"][i]['resources'])):
             json_data["task_resource_distribution"][i]['resources'][j]['distribution_name'] = distr_act[0]
-            json_data["task_resource_distribution"][i]['resources'][j]['distribution_params'] = [{'value': p} for p in distr_act[1]]
+            json_data["task_resource_distribution"][i]['resources'][j]['distribution_params'] = [{'value': p} for p in distr_act[1].values()]
 
 
     _, res_pool = parse_resource_profiles(json_data["resource_profiles"])
