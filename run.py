@@ -50,5 +50,5 @@ for i in range(N_iterations):
 
     log_sim_df = pd.read_csv("data/simulated_log.csv")
     err = compute_wass_dist_execution(log, log_sim_df)
-    print(err)
+    print('Execution Activities Avg Wasserstein distance: ', round(err, 2))
     wass_error.append(err)

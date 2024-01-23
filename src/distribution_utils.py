@@ -33,7 +33,7 @@ def find_best_fit_distribution(observed_values, N=None):
             dist = stats.norm
             try:
                 loc, scale = dist.fit(observed_values)
-                distr_params[distr_name] = {'loc': loc, 'scale': scale}
+                distr_params[distr_name] = {'mean': np.mean(observed_values), 'std': np.std(observed_values), 'min': 0, 'max': np.max(observed_values)}
                 generated_values[distr_name] = dist.rvs(loc=loc, scale=scale, size=N)
             except:
                 None
@@ -41,7 +41,7 @@ def find_best_fit_distribution(observed_values, N=None):
             dist = stats.expon
             try:
                 loc, scale = dist.fit(observed_values)
-                distr_params[distr_name] = {'loc': loc, 'scale': scale}
+                distr_params[distr_name] = {'mean': np.mean(observed_values), 'min': 0, 'max': np.max(observed_values)}
                 generated_values[distr_name] = dist.rvs(loc=loc, scale=scale, size=N)
             except:
                 None
@@ -49,23 +49,24 @@ def find_best_fit_distribution(observed_values, N=None):
             dist = stats.uniform
             try:
                 loc, scale = dist.fit(observed_values)
-                distr_params[distr_name] = {'loc': loc, 'scale': scale}
+                distr_params[distr_name] = {'min': np.min(observed_values), 'max': np.max(observed_values)}
                 generated_values[distr_name] = dist.rvs(loc=loc, scale=scale, size=N)
             except:
                 None
-        elif distr_name == 'triang':
-            dist = stats.triang
-            try:
-                c, loc, scale = dist.fit(observed_values)
-                distr_params[distr_name] = {'c': c, 'loc': loc, 'scale': scale}
-                generated_values[distr_name] = dist.rvs(c=c, loc=loc, scale=scale, size=N)
-            except:
-                None
+        # # TODO check triang
+        # elif distr_name == 'triang':
+        #     dist = stats.triang
+        #     try:
+        #         c, loc, scale = dist.fit(observed_values)
+        #         distr_params[distr_name] = {'c': c, 'loc': loc, 'scale': scale}
+        #         generated_values[distr_name] = dist.rvs(c=c, loc=loc, scale=scale, size=N)
+        #     except:
+        #         None
         elif distr_name == 'lognorm':
             dist = stats.lognorm
             try:
                 s, loc, scale = dist.fit(observed_values)
-                distr_params[distr_name] = {'s': s, 'loc': loc, 'scale': scale}
+                distr_params[distr_name] = {'mean': np.mean(observed_values), 'var': np.std(observed_values)**2, 'min': np.min(observed_values), 'max': np.max(observed_values)}
                 generated_values[distr_name] = dist.rvs(s=s, loc=loc, scale=scale, size=N)
             except:
                 None
@@ -73,7 +74,7 @@ def find_best_fit_distribution(observed_values, N=None):
             dist = stats.gamma
             try:
                 a, loc, scale = dist.fit(observed_values)
-                distr_params[distr_name] = {'a': a, 'loc': loc, 'scale': scale}
+                distr_params[distr_name] = {'mean': np.mean(observed_values), 'var': np.std(observed_values)**2, 'min': np.min(observed_values), 'max': np.max(observed_values)}
                 generated_values[distr_name] = dist.rvs(a=a, loc=loc, scale=scale, size=N)
             except:
                 None
