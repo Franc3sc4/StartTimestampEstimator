@@ -1,7 +1,7 @@
 import numpy as np
 import pm4py
 from datetime import timezone
-from scipy.stats import norm, expon, uniform, triang, lognorm, gamma, wasserstein_distance
+from scipy.stats import wasserstein_distance
 from src.distribution_utils import find_best_fit_distribution
 
 possible_distributions = [
@@ -43,20 +43,6 @@ def find_execution_distributions(log):
 
     return exec_distr
 
-
-def compute_wass_dist_execution(log_real, log_sim):
-    activities = pm4py.get_event_attribute_values(log_real, 'concept:name')
-    a_real, a_sim = {a:[] for a in activities}, {} 
-    for trace in log_real:
-        for event in trace:
-            a_real[event["concept:name"]].append((event["time:timestamp"]-event["start:timestamp"]).total_seconds())
-    a_sim[event["concept:name"]].append((event["time:timestamp"]-event["start:timestamp"]).total_seconds())
-    for a in activities:
-        a_sim[a] = list((log_sim[log_sim.activity==a][log_sim.end_time] - log_sim[log_sim.activity==a][log_sim.start_time]).apply(lambda x: x.total_seconds()))
-    
-    wass_distances = {a: wasserstein_distance(a_real[a], a_sim[a]) for a in activities}
-
-    return np.mean(list(wass_distances.values()))
 
 #def compute_arrival_times(log):
 #
