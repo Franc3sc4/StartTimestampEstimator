@@ -6,14 +6,12 @@ possible_distributions = [
     'norm',
     'expon',
     'uniform',
-    'triang',
     'lognorm',
     'gamma'
     ]
 
 
-# TODO Sistemare i parametri delle distrubuzioni con quelli in "pix_framework\statistics\distribution.py" linea 250 
-# https://github.com/AutomatedProcessImprovement/pix-framework/tree/main/src/pix_framework
+
 def find_best_fit_distribution(observed_values, N=None):
     
     if not N:
@@ -53,15 +51,6 @@ def find_best_fit_distribution(observed_values, N=None):
                 generated_values[distr_name] = dist.rvs(loc=loc, scale=scale, size=N)
             except:
                 None
-        # # TODO check triang
-        # elif distr_name == 'triang':
-        #     dist = stats.triang
-        #     try:
-        #         c, loc, scale = dist.fit(observed_values)
-        #         distr_params[distr_name] = {'c': c, 'loc': loc, 'scale': scale}
-        #         generated_values[distr_name] = dist.rvs(c=c, loc=loc, scale=scale, size=N)
-        #     except:
-        #         None
         elif distr_name == 'lognorm':
             dist = stats.lognorm
             try:
