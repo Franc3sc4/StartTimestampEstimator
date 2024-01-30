@@ -64,10 +64,10 @@ for i in range(N_iterations):
     # err_ex = compute_wass_dist_execution(log, log_sim_df)
     # print('Execution Activities Avg Wasserstein distance: ', round(err_ex, 2))
     err_cycle = compute_wass_dist_cycle_time(log, log_sim_df)
-    print('Cycle time Avg Wasserstein distance: ', round(err_cycle, 2))
-    err_wt = compute_wass_dist_waiting_time(log, log_sim_df)
-    print('Waiting time Activities Avg Wasserstein distance: ', round(err_wt, 2))
+    print('Cycle time Avg Wasserstein distance: ', err_cycle)
+    #err_wt = compute_wass_dist_waiting_time(log, log_sim_df)
+    #print('Waiting time Activities Avg Wasserstein distance: ', round(err_wt, 2))
 
-    err = err_cycle + err_wt
-    print('Error: ', round(err, 2))
+    err = err_cycle #+ err_wt
+    print('Error: ', err)
     errors.append(err)

@@ -26,19 +26,30 @@ def compute_wass_dist_execution(log_real, log_sim_df):
 
 def compute_wass_dist_cycle_time(log_real, log_sim_df):
     
-    cycle_time_real = []
+    activities = pm4py.get_event_attribute_values(log_real, "concept:name")
+    cycle_time_real = {a:[] for a in list(activities.keys())}
+    
     for trace in log_real:
-        cycle_time_real.append((trace[-1]['time:timestamp'] - trace[0]['start:timestamp']).total_seconds()/len(trace))
+        t_0 = trace[0]['start:timestamp']
+        for i in range(len(trace)):
+            cycle_time_real[trace[i]['concept:name']].append((trace[i]['time:timestamp']-t_0).total_seconds())
 
     log_sim_df['start_time'] = pd.to_datetime(log_sim_df['start_time'])
     log_sim_df['end_time'] = pd.to_datetime(log_sim_df['end_time'])
+    cycle_time_sim = {a:[] for a in list(activities.keys())}
 
     case_ids = list(log_sim_df['case_id'].unique())
-    cycle_time_sim = []
     for i in case_ids:
-        cycle_time_sim.append((list(log_sim_df[log_sim_df['case_id'] == i]['end_time'])[-1] - list(log_sim_df[log_sim_df['case_id'] == i]['start_time'])[0]).total_seconds()/len(log_sim_df[log_sim_df['case_id'] == i]))
+        t_0 = pd.to_datetime(list(log_sim_df[log_sim_df['case_id'] == i]['start_time'])[0])
+        for a in list(log_sim_df[log_sim_df['case_id'] == i]['activity'].unique()):
+            t = list(log_sim_df[(log_sim_df['case_id'] == i) & (log_sim_df['activity'] == a)]['end_time'])
+            for t_1 in t:
+                cycle_time_sim[a].append((t_1 - t_0).total_seconds())
+    
 
-    return wasserstein_distance(cycle_time_real, cycle_time_sim)
+    print('mean cycle_time_real[Create Request for Quotation]', np.mean(cycle_time_real['Create Request for Quotation']))
+    print('mean cycle_time_sim[Create Request for Quotation]',np.mean(cycle_time_sim['Create Request for Quotation']))
+    return {a: round(wasserstein_distance(cycle_time_real[a], cycle_time_sim[a]),2) for a in list(activities.keys())}
     
 
 def compute_wass_dist_waiting_time(log_real, log_sim_df):
