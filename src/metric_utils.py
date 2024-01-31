@@ -30,7 +30,7 @@ def compute_wass_dist_cycle_time(log_real, log_sim_df):
     cycle_time_real = {a:[] for a in list(activities.keys())}
     
     for trace in log_real:
-        t_0 = trace[0]['start:timestamp']
+        t_0 = trace[0]['start:timestamp'] # 'Create Purchase Requisition' è la prima activity di ogni traccia
         for i in range(len(trace)):
             cycle_time_real[trace[i]['concept:name']].append((trace[i]['time:timestamp']-t_0).total_seconds())
 
@@ -47,8 +47,8 @@ def compute_wass_dist_cycle_time(log_real, log_sim_df):
                 cycle_time_sim[a].append((t_1 - t_0).total_seconds())
     
 
-    print('mean cycle_time_real[Create Request for Quotation]', np.mean(cycle_time_real['Create Request for Quotation']))
-    print('mean cycle_time_sim[Create Request for Quotation]',np.mean(cycle_time_sim['Create Request for Quotation']))
+    #print('mean cycle_time_real[Create Request for Quotation]', np.mean(cycle_time_real['Create Request for Quotation']))
+    #print('mean cycle_time_sim[Create Request for Quotation]',np.mean(cycle_time_sim['Create Request for Quotation']))
     return {a: round(wasserstein_distance(cycle_time_real[a], cycle_time_sim[a]),2) for a in list(activities.keys())}
     
 

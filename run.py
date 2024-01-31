@@ -15,15 +15,11 @@ gen_cases = 608
 total_cases = gen_cases+int(gen_cases*perc)
 log_path = 'data/purchasing_example.xes'
 starting_at = '2011-01-01T00:00:00.000000+00:00'
-N_iterations = 1
+N_iterations = 7
 save_log_alpha= True
 
 log = xes_importer.apply(log_path)
 log = pm4py.filter_event_attribute_values(log, 'lifecycle:transition', ['complete'], level="event", retain=True)
-
-#log_df = pm4py.convert_to_dataframe(log)
-#log_df = log_df.loc[log['lifecycle:transition']=="complete",["Resource", "Activity", "time:timestamp", "case:concept:name"]]
-#log_df.rename(columns ={"Resource":"org:resource","Activity":"concept:name"}, inplace=True)
 
 activities = list(pm4py.get_event_attribute_values(log, "concept:name").keys())
 
@@ -33,13 +29,18 @@ with open(json_path) as json_file:
 diffsim_info = SimDiffSetup(bpmn_path, json_path, is_event_added_to_log=False, total_cases=total_cases)
 
 errors = []
+alphas_tot=[{a: 0.1 for a in activities}, {a: 0.9 for a in activities}]
+
 
 for i in range(N_iterations):
-    # TODO crea alpha
+    print(i)
     if i == 0:
-        alphas = {a: 0.25 for a in activities}
-    #else:
-    #    alphas = update_alphas()
+        alphas = alphas_tot[0]
+    if i == 1:
+        alphas = alphas_tot[1]
+    else:
+        alphas = {a: (alphas_tot[0][a]+alphas_tot[1][a])/2 for a in activities}
+        alphas_tot.append(alphas)
         
     log = set_start_timestamp_from_alpha(log, alphas)
 
@@ -64,10 +65,51 @@ for i in range(N_iterations):
     # err_ex = compute_wass_dist_execution(log, log_sim_df)
     # print('Execution Activities Avg Wasserstein distance: ', round(err_ex, 2))
     err_cycle = compute_wass_dist_cycle_time(log, log_sim_df)
-    print('Cycle time Avg Wasserstein distance: ', err_cycle)
+    print('Cycle time Avg Wasserstein distance: {}'.format(err_cycle))
     #err_wt = compute_wass_dist_waiting_time(log, log_sim_df)
     #print('Waiting time Activities Avg Wasserstein distance: ', round(err_wt, 2))
 
-    err = err_cycle #+ err_wt
-    print('Error: ', err)
-    errors.append(err)
+    #err = err_cycle #+ err_wt
+    #print('Error: ', err)
+    # errors contains a dictionary for each iteration completed
+    # N_iterations = 3 --> errors = [{},{},{}]
+    errors.append(err_cycle)
+
+    if i>=2:    
+        for a in activities:
+            if errors[i][a]<errors[0][a]<errors[1][a]: # err_i < err_1 < err_0
+                alphas_tot[0][a] = alphas_tot[i][a] # 0: alpha_i, 1: alpha_1
+                errors[0][a] = errors[i][a]
+            if errors[i][a]<errors[0][a]<errors[1][a]: # err_i < err_0 < err_1
+                alphas_tot[1][a] = alphas_tot[i][a] # 0: alpha_0, 1: alpha_i
+                errors[1][a] = errors[i][a]
+            if errors[1][a]<errors[i][a]<errors[0][a]: # err_1 < err_i < err_0
+                alphas_tot[0][a] = alphas_tot[i][a] # 0: alpha_i, 1: alpha_1
+                errors[0][a] = errors[i][a]
+            if errors[0][a]<errors[i][a]<errors[1][a]: # err_0 < err_i < err_1
+                alphas_tot[1][a] = alphas_tot[i][a] # 0: alpha_0, 1: alpha_i
+                errors[1][a] = errors[i][a]
+                #else: # if errors[i][a]>errors[0][a] and errors[i][a]>errors[1][a]:
+                    #questa parte non mi interessa perché non sto modificando l'intervallo
+                #    if errors[0][a]>errors[1][a]:
+                #        alphas_tot[2][a] = alphas_tot[1][a]
+                #        errors[i][a] = errors[1][a]
+                #    else: # errors[1][a]>errors[0][a]
+                #        alphas_tot[2][a] = alphas_tot[0][a]
+                #        errors[i][a] = errors[0][a]
+
+        
+print('Alphas Tot: {}\n'.format(alphas_tot))
+
+best_alphas = {a:0 for a in activities}
+best_errors = {a:0 for a in activities}
+for a in activities:
+    L = []
+    for i in range(len(errors)):
+        L.append(errors[i][a]) # L è una lista di lungh. pari al nr di iteraz. e contiene 3 valori distinti per gli errori
+    best_errors[a] = min(L)
+    index_min = min(range(len(L)), key=L.__getitem__)
+    best_alphas[a] = alphas_tot[index_min][a]
+
+print('\nBest alphas:', best_alphas)
+print('\nBest errors:', best_errors)
