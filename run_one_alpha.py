@@ -22,8 +22,8 @@ total_cases = gen_cases+int(gen_cases*perc)
 log_path = 'data/purchasing_example.xes'
 starting_at = '2011-01-01T00:00:00.000000+00:00'
 N_iterations = 1
-save_log_alpha= True
 delta = 0.05
+shuffle_activities = False
 
 log = xes_importer.apply(log_path)
 log = pm4py.filter_event_attribute_values(log, 'lifecycle:transition', ['complete'], level="event", retain=True)
@@ -40,7 +40,7 @@ def compute_distance(alphas_best, log=log, json_data=json_data, diffsim_info=dif
     gen_cases = 608
     total_cases = gen_cases+int(gen_cases*perc)
     starting_at = '2011-01-01T00:00:00.000000+00:00'
-    save_log_alpha= True
+    save_log_alpha = True
 
     log = set_start_timestamp_from_alpha(log, alphas_best)
 
@@ -48,7 +48,8 @@ def compute_distance(alphas_best, log=log, json_data=json_data, diffsim_info=dif
         df_log_alpha = pm4py.convert_to_dataframe(log)
         if shuffle_activities:
             df_log_alpha.to_csv('data/log_alpha_one_shuffle.csv', index=False)
-        df_log_alpha.to_csv('data/log_alpha_one.csv', index=False)
+        else:
+            df_log_alpha.to_csv('data/log_alpha_one.csv', index=False)
 
     best_distr_act_execution = find_execution_distributions(log)
 
@@ -70,23 +71,23 @@ def compute_distance(alphas_best, log=log, json_data=json_data, diffsim_info=dif
 
     return err_cycle
 
-def prev_succ(alpha, delta, trial=2):
+def prev_succ(alpha, delta, trial=3):
     L=[]
     i=1
     while i<=trial:
         x = alpha - delta*i
         if x>0:      
-            L.append(round(x,2))
+            L.append(round(x,3))
         i+=1
     return L
 
-def next_succ(alpha, delta, trial=2):
+def next_succ(alpha, delta, trial=3):
     L=[]
     i=1
     while i<=trial:
         x = alpha + delta*i
         if x<1:      
-            L.append(round(x,2))
+            L.append(round(x,3))
         i+=1
     return L
 
@@ -96,13 +97,11 @@ def next_succ(alpha, delta, trial=2):
 alphas_best = {a: round(random.random(),2) for a in activities}
 epsilon_best = compute_distance(alphas_best)
 
-alphas_track = [alphas_best]
-errors_track = [epsilon_best]
-
-shuffle_activities = False
+alphas_track = {a:[] for a in activities}
+errors_track = {a: [] for a in activities}
 
 if shuffle_activities:
-    activities = random.shuffle(activities)
+    random.shuffle(activities)
 
 for a in activities:
     print('\nActivity:',a)
@@ -114,12 +113,10 @@ for a in activities:
             alpha[a] = Q_next.pop(0)
             if alpha[a] not in Q_tried:
                 Q_tried.append(alpha[a])
-                print("Q_tried", Q_tried)
-                alphas_track.append(alpha)
+                alphas_track[a].append(alpha[a])
                 epsilon = compute_distance(alpha)
-                errors_track.append(epsilon)
+                errors_track[a].append(epsilon[a])
                 if epsilon[a] < epsilon_best[a]: # abs(epsilon[a]-epsilon_best[a]) < 60*60 : check per fermare le iterazioni
-                    print("epsilon < best")
                     if alpha[a]<alphas_best[a]:
                         Q_next = [x for x in Q_next if x<alpha[a]]
                     else:
@@ -127,34 +124,37 @@ for a in activities:
                     alphas_best[a] = alpha[a]
                     
                 if epsilon[a] >= epsilon_best[a]: 
-                    print("epsilon >= best")
                     if alpha[a]<alphas_best[a]:
                         Q_next = [x for x in Q_next if x>alphas_best[a]]
                     if alpha[a]>alphas_best[a]:
                         Q_next = [x for x in Q_next if x<alphas_best[a]]
     
-print("Best alphas", alphas_track[-1])
-print("Best distances", errors_track[-1])
+print("Best alphas", alphas_best)
+print("Best distances", epsilon_best)
 
 #-------------------------------------------------
-# graph creation
-
-data = {a:[[],[]] for a in activities}
-for a in activities:
-    for i in range(len(alphas_track)):
-        data[a][0].append(alphas_track[i][a])
-        data[a][1].append(errors_track[i][a])
-
+# df saving
 data_df = pd.DataFrame(columns = ["Activity", "Alpha", "W.Distance"])
+
 for a in activities:
-    for i in range(len(data[a][0])):
-        new_row = {"Activity":a, "Alpha":data[a][0][i], "W.Distance":data[a][1][i]}
+    for i in range(len(alphas_track[a])):
+        new_row = {"Activity":a, "Alpha":alphas_track[a][i], "W.Distance":errors_track[a][i]}
         data_df.loc[len(data_df)] = new_row
 
-for a in activities:
-    data_a = data_df.loc[data_df.Activity==a,:]
-    #data_a = data_a[:len(set(data_a['Alpha']))] # per evitare doppioni negli alpha, prendo le righe con alpha tutti diversi
-    g = sns.lineplot(data=data_a, x='Alpha', y='W.Distance')
-    g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
-    plt.savefig('data/plot_multi_alpha/run_one_alpha_errors_{}.png'.format(a))
-    plt.show()
+
+if shuffle_activities:
+    data_df.to_csv("data/data_single_update_shuffle.csv")    
+data_df.to_csv("data/data_single_update.csv")
+
+
+#-------------------------------------------------
+# plot creation
+plot_ = True
+
+if plot_:
+    for a in activities:
+        data_one_a = data_df.loc[data_df.Activity==a,:]
+        g = sns.lineplot(data=data_one_a, x='Alpha', y='W.Distance')
+        g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
+        plt.savefig('data/plot_single_alpha_shuffle/run_one_alpha_shuffle_errors_{}.png'.format(a))
+        plt.show()

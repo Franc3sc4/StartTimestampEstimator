@@ -5,7 +5,6 @@ from pm4py.objects.log.importer.xes import importer as xes_importer
 from src.utils import set_start_timestamp_from_alpha
 from src.temporal_utils import find_execution_distributions
 from src.metric_utils import compute_wass_dist_execution, compute_wass_dist_cycle_time, compute_wass_dist_waiting_time
-from run_one_alpha import data_one_df
 import pm4py
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -138,13 +137,16 @@ print('\nBest errors:', best_errors)
 
 
 #------------------------------------------------------
-# graph creation
-
+# df saving
 data = {a:[[],[]] for a in activities}
 for a in activities:
     for i in range(len(alphas_track)):
         data[a][0].append(alphas_track[i][a])
         data[a][1].append(errors_track[i][a])
+
+for a in activities:
+    data[a][0] = data[a][0][:len(list(set(data[a][0])))]
+    data[a][1] = data[a][1][:len(data[a][0])]
 
 data_df = pd.DataFrame(columns = ["Activity", "Alpha", "W.Distance"])
 for a in activities:
@@ -152,10 +154,19 @@ for a in activities:
         new_row = {"Activity":a, "Alpha":data[a][0][i], "W.Distance":data[a][1][i]}
         data_df.loc[len(data_df)] = new_row
 
-for a in activities:
-    data_a = data_df.loc[data_df.Activity==a,:]
-    data_a = data_a[:len(set(data_a['Alpha']))] # per evitare doppioni negli alpha, prendo le righe con alpha tutti diversi
-    g = sns.lineplot(data=data_a, x='Alpha', y='W.Distance')
-    g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
-    plt.savefig('data/plot_multi_alpha/run_errors_{}.png'.format(a))
-    plt.show()
+data_df.to_csv("data/data_multi_update.csv")
+
+
+#-------------------------------------
+# plot creation
+
+plot_ = True
+
+if plot_:
+    for a in activities:
+        data_a = data_df.loc[data_df.Activity==a,:]
+        #data_a = data_a[:len(set(data_a['Alpha']))] # per evitare doppioni negli alpha, prendo le righe con alpha tutti diversi
+        g = sns.lineplot(data=data_a, x='Alpha', y='W.Distance')
+        g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
+        plt.savefig('data/plot_multi_alpha/run_errors_{}.png'.format(a))
+        plt.show()
