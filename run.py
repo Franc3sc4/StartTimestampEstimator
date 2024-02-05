@@ -5,8 +5,14 @@ from pm4py.objects.log.importer.xes import importer as xes_importer
 from src.utils import set_start_timestamp_from_alpha
 from src.temporal_utils import find_execution_distributions
 from src.metric_utils import compute_wass_dist_execution, compute_wass_dist_cycle_time, compute_wass_dist_waiting_time
+from run_one_alpha import data_one_df
 import pm4py
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+import warnings
+warnings.filterwarnings("ignore")
 
 bpmn_path = 'data/purchasing_example.bpmn'
 json_path = 'data/purchasing_example.json'
@@ -15,7 +21,7 @@ gen_cases = 608
 total_cases = gen_cases+int(gen_cases*perc)
 log_path = 'data/purchasing_example.xes'
 starting_at = '2011-01-01T00:00:00.000000+00:00'
-N_iterations = 7
+N_iterations = 20
 save_log_alpha= True
 
 log = xes_importer.apply(log_path)
@@ -29,7 +35,10 @@ with open(json_path) as json_file:
 diffsim_info = SimDiffSetup(bpmn_path, json_path, is_event_added_to_log=False, total_cases=total_cases)
 
 errors = []
-alphas_tot=[{a: 0.1 for a in activities}, {a: 0.9 for a in activities}]
+alphas_tot = [{a: 0 for a in activities}, {a: 1 for a in activities}]
+
+alphas_track = [{a: 0 for a in activities}, {a: 1 for a in activities}]
+errors_track = []
 
 
 for i in range(N_iterations):
@@ -38,9 +47,10 @@ for i in range(N_iterations):
         alphas = alphas_tot[0]
     if i == 1:
         alphas = alphas_tot[1]
-    else:
+    if i>1:
         alphas = {a: (alphas_tot[0][a]+alphas_tot[1][a])/2 for a in activities}
         alphas_tot.append(alphas)
+        alphas_track.append(alphas)
         
     log = set_start_timestamp_from_alpha(log, alphas)
 
@@ -64,8 +74,9 @@ for i in range(N_iterations):
     log_sim_df = log_sim_df[(log_sim_df["case_id"]>min_case_id) & (log_sim_df["case_id"]<=max_case_id)]
     # err_ex = compute_wass_dist_execution(log, log_sim_df)
     # print('Execution Activities Avg Wasserstein distance: ', round(err_ex, 2))
+    
     err_cycle = compute_wass_dist_cycle_time(log, log_sim_df)
-    print('Cycle time Avg Wasserstein distance: {}'.format(err_cycle))
+    #print('Cycle time Avg Wasserstein distance: {}'.format(err_cycle))
     #err_wt = compute_wass_dist_waiting_time(log, log_sim_df)
     #print('Waiting time Activities Avg Wasserstein distance: ', round(err_wt, 2))
 
@@ -74,10 +85,11 @@ for i in range(N_iterations):
     # errors contains a dictionary for each iteration completed
     # N_iterations = 3 --> errors = [{},{},{}]
     errors.append(err_cycle)
+    errors_track.append(err_cycle)
 
     if i>=2:    
         for a in activities:
-            if errors[i][a]<errors[0][a]<errors[1][a]: # err_i < err_1 < err_0
+            if errors[i][a]<errors[1][a]<errors[0][a]: # err_i < err_1 < err_0
                 alphas_tot[0][a] = alphas_tot[i][a] # 0: alpha_i, 1: alpha_1
                 errors[0][a] = errors[i][a]
             if errors[i][a]<errors[0][a]<errors[1][a]: # err_i < err_0 < err_1
@@ -89,27 +101,61 @@ for i in range(N_iterations):
             if errors[0][a]<errors[i][a]<errors[1][a]: # err_0 < err_i < err_1
                 alphas_tot[1][a] = alphas_tot[i][a] # 0: alpha_0, 1: alpha_i
                 errors[1][a] = errors[i][a]
-                #else: # if errors[i][a]>errors[0][a] and errors[i][a]>errors[1][a]:
-                    #questa parte non mi interessa perché non sto modificando l'intervallo
-                #    if errors[0][a]>errors[1][a]:
-                #        alphas_tot[2][a] = alphas_tot[1][a]
-                #        errors[i][a] = errors[1][a]
-                #    else: # errors[1][a]>errors[0][a]
-                #        alphas_tot[2][a] = alphas_tot[0][a]
-                #        errors[i][a] = errors[0][a]
+    
+    
+    # early stopping criterion
+    # se non vi è un cambiamento nel valore di alpha nelle ultime 2 iterazioni, per ogni attività, ci si ferma
+    x = 0
+    epsilon = 0.001 # tollerance
+    if i>2:
+        for a in activities:
+            A=[]
+            for i in range(len(alphas_tot)):
+                A.append(alphas_tot[i][a])
+            if abs(A[-1]-A[-2])<epsilon: 
+                x+=1
+        if x>len(activities)*.9: # 90% of activites reaches the minimum
+            print('no more minimum')
+            break
 
-        
-print('Alphas Tot: {}\n'.format(alphas_tot))
+#print('Alphas Tot: {}\n'.format(alphas_tot))
 
+# extract the best values of alpha for minimizing the wasserstein distance
+            
 best_alphas = {a:0 for a in activities}
 best_errors = {a:0 for a in activities}
 for a in activities:
     L = []
     for i in range(len(errors)):
         L.append(errors[i][a]) # L è una lista di lungh. pari al nr di iteraz. e contiene 3 valori distinti per gli errori
+                                # gli unici valori che vengono sostituiti sono quelli in posizione 0 e 1, che migliorano il
+                                # loro valore a seguito del confronto
     best_errors[a] = min(L)
     index_min = min(range(len(L)), key=L.__getitem__)
     best_alphas[a] = alphas_tot[index_min][a]
-
 print('\nBest alphas:', best_alphas)
 print('\nBest errors:', best_errors)
+
+
+#------------------------------------------------------
+# graph creation
+
+data = {a:[[],[]] for a in activities}
+for a in activities:
+    for i in range(len(alphas_track)):
+        data[a][0].append(alphas_track[i][a])
+        data[a][1].append(errors_track[i][a])
+
+data_df = pd.DataFrame(columns = ["Activity", "Alpha", "W.Distance"])
+for a in activities:
+    for i in range(len(data[a][0])):
+        new_row = {"Activity":a, "Alpha":data[a][0][i], "W.Distance":data[a][1][i]}
+        data_df.loc[len(data_df)] = new_row
+
+for a in activities:
+    data_a = data_df.loc[data_df.Activity==a,:]
+    data_a = data_a[:len(set(data_a['Alpha']))] # per evitare doppioni negli alpha, prendo le righe con alpha tutti diversi
+    g = sns.lineplot(data=data_a, x='Alpha', y='W.Distance')
+    g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
+    plt.savefig('data/plot_multi_alpha/run_errors_{}.png'.format(a))
+    plt.show()
