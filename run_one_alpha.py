@@ -23,7 +23,7 @@ log_path = 'data/purchasing_example.xes'
 starting_at = '2011-01-01T00:00:00.000000+00:00'
 N_iterations = 1
 delta = 0.05
-shuffle_activities = False
+shuffle_activities = True
 
 log = xes_importer.apply(log_path)
 log = pm4py.filter_event_attribute_values(log, 'lifecycle:transition', ['complete'], level="event", retain=True)
@@ -94,11 +94,12 @@ def next_succ(alpha, delta, trial=3):
 
 # -----------------------------------------------------------------
 
-alphas_best = {a: round(random.random(),2) for a in activities}
+#alphas_best = {a: round(random.random(),2) for a in activities}
+alphas_best = {a: 0.5 for a in activities}
 epsilon_best = compute_distance(alphas_best)
 
-alphas_track = {a:[] for a in activities}
-errors_track = {a: [] for a in activities}
+alphas_track = {a:[0.5] for a in activities}
+errors_track = {a:[epsilon_best[a]] for a in activities}
 
 if shuffle_activities:
     random.shuffle(activities)
@@ -130,8 +131,7 @@ for a in activities:
                         Q_next = [x for x in Q_next if x<alphas_best[a]]
     
 print("Best alphas", alphas_best)
-print("Best distances", epsilon_best)
-
+print("Best Wasserstein distances", epsilon_best)
 #-------------------------------------------------
 # df saving
 data_df = pd.DataFrame(columns = ["Activity", "Alpha", "W.Distance"])
@@ -154,7 +154,7 @@ plot_ = True
 if plot_:
     for a in activities:
         data_one_a = data_df.loc[data_df.Activity==a,:]
-        g = sns.lineplot(data=data_one_a, x='Alpha', y='W.Distance')
+        g = sns.lineplot(data=data_one_a, x='Alpha', y='W.Distance', markers=True, style = "Activity")
         g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
         plt.savefig('data/plot_single_alpha_shuffle/run_one_alpha_shuffle_errors_{}.png'.format(a))
         plt.show()

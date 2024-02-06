@@ -84,22 +84,25 @@ for i in range(N_iterations):
     # errors contains a dictionary for each iteration completed
     # N_iterations = 3 --> errors = [{},{},{}]
     errors.append(err_cycle)
-    errors_track.append(err_cycle)
+    errors_track.append(err_cycle.copy())
 
     if i>=2:    
         for a in activities:
-            if errors[i][a]<errors[1][a]<errors[0][a]: # err_i < err_1 < err_0
-                alphas_tot[0][a] = alphas_tot[i][a] # 0: alpha_i, 1: alpha_1
+            if errors[i][a]<errors[1][a] and errors[1][a]<errors[0][a]: # err_i < err_1 < err_0
+                alphas_tot[0][a] = alphas_tot[i][a] # 0: alpha_i, 1: alpha_1 --> err_0 = err_i < err_1
                 errors[0][a] = errors[i][a]
-            if errors[i][a]<errors[0][a]<errors[1][a]: # err_i < err_0 < err_1
-                alphas_tot[1][a] = alphas_tot[i][a] # 0: alpha_0, 1: alpha_i
+            if errors[i][a]<errors[0][a] and errors[0][a]<errors[1][a]: # err_i < err_0 < err_1
+                alphas_tot[1][a] = alphas_tot[i][a] # 0: alpha_0, 1: alpha_i --> err_1 = err_i < err_0
                 errors[1][a] = errors[i][a]
-            if errors[1][a]<errors[i][a]<errors[0][a]: # err_1 < err_i < err_0
-                alphas_tot[0][a] = alphas_tot[i][a] # 0: alpha_i, 1: alpha_1
+            if errors[1][a]<errors[i][a] and errors[i][a]<errors[0][a]: # err_1 < err_i < err_0
+                alphas_tot[0][a] = alphas_tot[i][a] # 0: alpha_i, 1: alpha_1 --> err_1 < err_0 = err_i
                 errors[0][a] = errors[i][a]
-            if errors[0][a]<errors[i][a]<errors[1][a]: # err_0 < err_i < err_1
-                alphas_tot[1][a] = alphas_tot[i][a] # 0: alpha_0, 1: alpha_i
+            if errors[0][a]<errors[i][a] and errors[i][a]<errors[1][a]: # err_0 < err_i < err_1
+                alphas_tot[1][a] = alphas_tot[i][a] # 0: alpha_0, 1: alpha_i --> err_0 < err_i = err_1
                 errors[1][a] = errors[i][a]
+            if (errors[i][a]==errors[0][a]) and (errors[i][a]==errors[1][a]):
+                continue
+                
     
     
     # early stopping criterion
@@ -113,7 +116,7 @@ for i in range(N_iterations):
                 A.append(alphas_tot[i][a])
             if abs(A[-1]-A[-2])<epsilon: 
                 x+=1
-        if x>len(activities)*.9: # 90% of activites reaches the minimum
+        if x==len(activities):
             print('no more minimum')
             break
 
@@ -133,7 +136,7 @@ for a in activities:
     index_min = min(range(len(L)), key=L.__getitem__)
     best_alphas[a] = alphas_tot[index_min][a]
 print('\nBest alphas:', best_alphas)
-print('\nBest errors:', best_errors)
+print('\nBest Wasserstein distances:', best_errors)
 
 
 #------------------------------------------------------
@@ -144,9 +147,15 @@ for a in activities:
         data[a][0].append(alphas_track[i][a])
         data[a][1].append(errors_track[i][a])
 
+# remove duplicates
 for a in activities:
-    data[a][0] = data[a][0][:len(list(set(data[a][0])))]
-    data[a][1] = data[a][1][:len(data[a][0])]
+    index=[]
+    for i in range(1,len(data[a][0])):
+        if data[a][0][i]==data[a][0][i-1]:
+            index.append(i)
+    data[a][0] = [j for i, j in enumerate(data[a][0]) if i not in index]
+    data[a][1] = [j for i, j in enumerate(data[a][1]) if i not in index]
+    
 
 data_df = pd.DataFrame(columns = ["Activity", "Alpha", "W.Distance"])
 for a in activities:
@@ -165,8 +174,8 @@ plot_ = True
 if plot_:
     for a in activities:
         data_a = data_df.loc[data_df.Activity==a,:]
-        #data_a = data_a[:len(set(data_a['Alpha']))] # per evitare doppioni negli alpha, prendo le righe con alpha tutti diversi
-        g = sns.lineplot(data=data_a, x='Alpha', y='W.Distance')
+        data_a = data_a[:len(set(data_a['Alpha']))] # per evitare doppioni negli alpha, prendo le righe con alpha tutti diversi
+        g = sns.lineplot(data=data_a, x='Alpha', y='W.Distance', markers=True, style="Activity")
         g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
         plt.savefig('data/plot_multi_alpha/run_errors_{}.png'.format(a))
         plt.show()
