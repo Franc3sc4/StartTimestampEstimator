@@ -23,12 +23,15 @@ log_path = 'data/purchasing_example.xes'
 starting_at = '2011-01-01T00:00:00.000000+00:00'
 N_iterations = 1
 delta = 0.05
-shuffle_activities = True
+shuffle_activities = False
 
 log = xes_importer.apply(log_path)
 log = pm4py.filter_event_attribute_values(log, 'lifecycle:transition', ['complete'], level="event", retain=True)
 
 activities = list(pm4py.get_event_attribute_values(log, "concept:name").keys())
+
+if shuffle_activities:
+    random.shuffle(activities)
 
 with open(json_path) as json_file:
     json_data = json.load(json_file)
@@ -66,7 +69,7 @@ def compute_distance(alphas_best, log=log, json_data=json_data, diffsim_info=dif
     min_case_id = int(total_cases*perc/2)
     max_case_id = min_case_id+gen_cases
     log_sim_df = log_sim_df[(log_sim_df["case_id"]>min_case_id) & (log_sim_df["case_id"]<=max_case_id)]
-    err_cycle = compute_wass_err(log, log_sim_df)
+    err_cycle = compute_wass_err(log, log_sim_df, False)
    # print('Cycle time Avg Wasserstein distance: {}'.format(err_cycle))
 
     return err_cycle
@@ -100,9 +103,6 @@ epsilon_best = compute_distance(alphas_best)
 
 alphas_track = {a:[0.5] for a in activities}
 errors_track = {a:[epsilon_best[a]] for a in activities}
-
-if shuffle_activities:
-    random.shuffle(activities)
 
 for a in activities:
     print('\nActivity:',a)
@@ -143,8 +143,9 @@ for a in activities:
 
 
 if shuffle_activities:
-    data_df.to_csv("data/data_single_update_random.csv")    
-data_df.to_csv("data/data_single_update.csv")
+    data_df.to_csv("data/data_single_update_shuffle.csv")    
+else:
+    data_df.to_csv("data/data_single_update.csv")
 
 
 #-------------------------------------------------
@@ -156,5 +157,9 @@ if plot_:
         data_one_a = data_df.loc[data_df.Activity==a,:]
         g = sns.lineplot(data=data_one_a, x='Alpha', y='W.Distance', markers=True, style = "Activity")
         g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
-        plt.savefig('data/plot_single_alpha_shuffle/run_one_alpha_shuffle_errors_{}.png'.format(a))
-        plt.show()
+        if shuffle_activities:
+            plt.savefig('data/plot_single_alpha_shuffle/run_one_alpha_shuffle_errors_{}.png'.format(a))
+            plt.show()
+        else:
+            plt.savefig('data/plot_single_alpha/run_one_alpha_errors_{}.png'.format(a))
+            plt.show()

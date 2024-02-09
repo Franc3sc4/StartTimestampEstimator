@@ -174,7 +174,6 @@ plot_ = True
 if plot_:
     for a in activities:
         data_a = data_df.loc[data_df.Activity==a,:]
-        data_a = data_a[:len(set(data_a['Alpha']))] # per evitare doppioni negli alpha, prendo le righe con alpha tutti diversi
         g = sns.lineplot(data=data_a, x='Alpha', y='W.Distance', markers=True, style="Activity")
         g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
         plt.savefig('data/plot_multi_alpha/run_errors_{}.png'.format(a))

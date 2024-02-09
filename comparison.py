@@ -36,19 +36,19 @@ data_one_shuffle_df = pd.read_csv('data/data_single_update_shuffle.csv')
 
 data_df.loc[:,'Method'] = 'Multi Alpha Update'
 data_one_df.loc[:,'Method'] = 'Single Alpha Update'
-data_one_shuffle_df.loc[:,'Method'] = 'Random Single Alpha Update'
+data_one_shuffle_df.loc[:,'Method'] = 'Shuffle Single Alpha Update'
 
 full_data = pd.concat([data_df, data_one_df, data_one_shuffle_df], ignore_index=True)
 full_data.loc[:,'Iteration'] = 0
 
-# add iteration
+# add 'Iteration' column
 for a in activities:
         for m in full_data.Method.unique():
                 full_data.loc[(full_data.Activity==a) & (full_data.Method==m),'Iteration'] = range(len(full_data.loc[(full_data.Activity==a) & (full_data.Method==m),:]))
                 
                 
 
-alpha_comparison = False
+alpha_comparison = True
 iteration_comparison = True
 
 if alpha_comparison:
