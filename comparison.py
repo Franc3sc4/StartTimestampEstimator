@@ -36,7 +36,7 @@ data_one_shuffle_df = pd.read_csv('data/data_single_update_shuffle.csv')
 
 data_df.loc[:,'Method'] = 'Multi Alpha Update'
 data_one_df.loc[:,'Method'] = 'Single Alpha Update'
-data_one_shuffle_df.loc[:,'Method'] = 'Shuffle Single Alpha Update'
+data_one_shuffle_df.loc[:,'Method'] = 'Random Single Alpha Update'
 
 full_data = pd.concat([data_df, data_one_df, data_one_shuffle_df], ignore_index=True)
 full_data.loc[:,'Iteration'] = 0
@@ -58,6 +58,13 @@ if alpha_comparison:
                 g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
                 plt.savefig('data/plot_comparison_alpha/comparison_errors_{}.png'.format(a))
                 plt.show()
+
+# remove Wasserstein distance track for alpha=0,1 for the 'Multi Alpha Update'
+full_data[full_data.Method == 'Multi Alpha Update'] = full_data[(full_data.Method == 'Multi Alpha Update') & (full_data.Alpha!=0) & (full_data.Alpha!=1)]
+full_data.dropna(axis=0, inplace=True)
+
+# adjust Iteration column
+full_data.loc[full_data.Method == 'Multi Alpha Update','Iteration'] = full_data[full_data.Method == 'Multi Alpha Update']['Iteration'].apply(lambda x: x-2)
 
 if iteration_comparison:
         for a in activities:

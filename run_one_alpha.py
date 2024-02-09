@@ -4,7 +4,7 @@ from src.simulation_utils import update_sim_params, run_simulation
 from pm4py.objects.log.importer.xes import importer as xes_importer
 from src.utils import set_start_timestamp_from_alpha
 from src.temporal_utils import find_execution_distributions
-from src.metric_utils import compute_wass_dist_execution, compute_wass_dist_cycle_time, compute_wass_dist_waiting_time
+from src.metric_utils import compute_wass_dist_execution, compute_wass_err, compute_wass_dist_waiting_time
 import pm4py
 import random
 import seaborn as sns
@@ -66,7 +66,7 @@ def compute_distance(alphas_best, log=log, json_data=json_data, diffsim_info=dif
     min_case_id = int(total_cases*perc/2)
     max_case_id = min_case_id+gen_cases
     log_sim_df = log_sim_df[(log_sim_df["case_id"]>min_case_id) & (log_sim_df["case_id"]<=max_case_id)]
-    err_cycle = compute_wass_dist_cycle_time(log, log_sim_df)
+    err_cycle = compute_wass_err(log, log_sim_df)
    # print('Cycle time Avg Wasserstein distance: {}'.format(err_cycle))
 
     return err_cycle
@@ -143,7 +143,7 @@ for a in activities:
 
 
 if shuffle_activities:
-    data_df.to_csv("data/data_single_update_shuffle.csv")    
+    data_df.to_csv("data/data_single_update_random.csv")    
 data_df.to_csv("data/data_single_update.csv")
 
 

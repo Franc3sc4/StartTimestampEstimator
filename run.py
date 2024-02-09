@@ -4,7 +4,7 @@ from src.simulation_utils import update_sim_params, run_simulation
 from pm4py.objects.log.importer.xes import importer as xes_importer
 from src.utils import set_start_timestamp_from_alpha
 from src.temporal_utils import find_execution_distributions
-from src.metric_utils import compute_wass_dist_execution, compute_wass_dist_cycle_time, compute_wass_dist_waiting_time
+from src.metric_utils import compute_wass_dist_execution, compute_wass_err, compute_wass_dist_waiting_time
 import pm4py
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -74,7 +74,7 @@ for i in range(N_iterations):
     # err_ex = compute_wass_dist_execution(log, log_sim_df)
     # print('Execution Activities Avg Wasserstein distance: ', round(err_ex, 2))
     
-    err_cycle = compute_wass_dist_cycle_time(log, log_sim_df)
+    err_cycle = compute_wass_err(log, log_sim_df)
     #print('Cycle time Avg Wasserstein distance: {}'.format(err_cycle))
     #err_wt = compute_wass_dist_waiting_time(log, log_sim_df)
     #print('Waiting time Activities Avg Wasserstein distance: ', round(err_wt, 2))
