@@ -1,6 +1,8 @@
 import pm4py
 import numpy as np
 import pandas as pd
+from pm4py.objects.log.importer.xes import importer as xes_importer
+from datetime import datetime, timedelta
 from scipy.stats import wasserstein_distance
 
 
@@ -24,7 +26,7 @@ def compute_wass_dist_execution(log_real, log_sim_df):
     return np.mean(list(wass_distances.values()))
 
 
-def compute_wass_dist_cycle_time(log_real, log_sim_df):
+def compute_wass_err(log_real, log_sim_df):
     
     activities = pm4py.get_event_attribute_values(log_real, "concept:name")
     cycle_time_real = {a:[] for a in list(activities.keys())}
@@ -67,6 +69,7 @@ def compute_wass_dist_cycle_time(log_real, log_sim_df):
     #print('mean cycle_time_real[Create Request for Quotation]', np.mean(cycle_time_real['Create Request for Quotation']))
     #print('mean cycle_time_sim[Create Request for Quotation]',np.mean(cycle_time_sim['Create Request for Quotation']))
     return {a: wasserstein_distance(cycle_time_real[a], cycle_time_sim[a]) for a in list(activities.keys())}
+
     
 
 def compute_wass_dist_waiting_time(log_real, log_sim_df):
@@ -91,3 +94,24 @@ def compute_wass_dist_waiting_time(log_real, log_sim_df):
             continue
 
     return wass_distances
+
+
+def compute_start_difference(log_sim_df):
+    
+    log_path = 'data/purchasing_example.xes'
+    log_real = xes_importer.apply(log_path)
+    log_real_df = pm4py.convert_to_dataframe(log_real)
+    log_real_df = log_real_df.sort_values(by='time:timestamp')
+    log_real_df = log_real_df.loc[log_real_df['lifecycle:transition']!='complete',['org:resource','time:timestamp','lifecycle:transition', 'concept:name']]
+    log_real_df['time:timestamp'] = pd.to_datetime(log_real_df['time:timestamp'])
+    
+    log_sim_df = log_sim_df.loc[:,['org:resource','time:timestamp','start:timestamp','lifecycle:transition', 'concept:name']].sort_values(by='time:timestamp')
+    log_sim_df['start:timestamp'] = pd.to_datetime(log_sim_df['start:timestamp'])
+
+    activities = list(log_real_df['concept:name'].unique())
+
+    delta_starts = {a:[] for a in activities}
+    for a in activities:
+        delta_starts[a] = np.median([abs(a_i-b_i) for a_i,b_i in zip(log_real_df.loc[log_real_df['concept:name']==a,'time:timestamp'], log_sim_df.loc[log_sim_df['concept:name']==a,'start:timestamp'])])
+        
+    return delta_starts

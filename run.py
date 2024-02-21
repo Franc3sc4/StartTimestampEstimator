@@ -4,7 +4,7 @@ from src.simulation_utils import update_sim_params, run_simulation
 from pm4py.objects.log.importer.xes import importer as xes_importer
 from src.utils import set_start_timestamp_from_alpha
 from src.temporal_utils import find_execution_distributions
-from src.metric_utils import compute_wass_dist_execution, compute_wass_err, compute_wass_dist_waiting_time
+from src.metric_utils import compute_wass_dist_execution, compute_wass_err, compute_wass_dist_waiting_time, compute_start_difference
 import pm4py
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -33,8 +33,8 @@ with open(json_path) as json_file:
 
 diffsim_info = SimDiffSetup(bpmn_path, json_path, is_event_added_to_log=False, total_cases=total_cases)
 
-errors = []
 alphas_tot = [{a: 0 for a in activities}, {a: 1 for a in activities}]
+errors = []
 
 alphas_track = [{a: 0 for a in activities}, {a: 1 for a in activities}]
 errors_track = []
@@ -75,15 +75,7 @@ for i in range(N_iterations):
     # print('Execution Activities Avg Wasserstein distance: ', round(err_ex, 2))
     
     err_cycle = compute_wass_err(log, log_sim_df)
-    #print('Cycle time Avg Wasserstein distance: {}'.format(err_cycle))
-    #err_wt = compute_wass_dist_waiting_time(log, log_sim_df)
-    #print('Waiting time Activities Avg Wasserstein distance: ', round(err_wt, 2))
-
-    #err = err_cycle #+ err_wt
-    #print('Error: ', err)
-    # errors contains a dictionary for each iteration completed
-    # N_iterations = 3 --> errors = [{},{},{}]
-    errors.append(err_cycle)
+    errors.append(err_cycle.copy())
     errors_track.append(err_cycle.copy())
 
     if i>=2:    
@@ -135,9 +127,14 @@ for a in activities:
     best_errors[a] = min(L)
     index_min = min(range(len(L)), key=L.__getitem__)
     best_alphas[a] = alphas_tot[index_min][a]
+
 print('\nBest alphas:', best_alphas)
 print('\nBest Wasserstein distances:', best_errors)
 
+#------------------------------------------------------
+# start:timestamp comparison
+time_difference = compute_start_difference(df_log_alpha)
+print('\nTime-delta between real log and multi update:', time_difference)
 
 #------------------------------------------------------
 # df saving
@@ -169,7 +166,7 @@ data_df.to_csv("data/data_multi_update.csv")
 #-------------------------------------
 # plot creation
 
-plot_ = True
+plot_ = False
 
 if plot_:
     for a in activities:
