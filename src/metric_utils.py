@@ -106,12 +106,17 @@ def compute_start_difference(log_sim_df):
     log_real_df['time:timestamp'] = pd.to_datetime(log_real_df['time:timestamp'])
     
     log_sim_df = log_sim_df.loc[:,['org:resource','time:timestamp','start:timestamp','lifecycle:transition', 'concept:name']].sort_values(by='time:timestamp')
+    log_sim_df = log_sim_df.sort_values(by='time:timestamp')
     log_sim_df['start:timestamp'] = pd.to_datetime(log_sim_df['start:timestamp'])
 
     activities = list(log_real_df['concept:name'].unique())
 
-    delta_starts = {a:[] for a in activities}
+    delta_starts_median = {a:[] for a in activities}
+    delta_starts_mean = {a:[] for a in activities}
+    delta_starts_weighted = {a:[] for a in activities}
     for a in activities:
-        delta_starts[a] = np.median([abs(a_i-b_i) for a_i,b_i in zip(log_real_df.loc[log_real_df['concept:name']==a,'time:timestamp'], log_sim_df.loc[log_sim_df['concept:name']==a,'start:timestamp'])])
-        
-    return delta_starts
+        delta_starts_median[a] = np.median([abs(a_i-b_i) for a_i,b_i in zip(log_real_df.loc[log_real_df['concept:name']==a,'time:timestamp'], log_sim_df.loc[log_sim_df['concept:name']==a,'start:timestamp'])])
+        delta_starts_mean[a] = np.mean([abs(a_i-b_i) for a_i,b_i in zip(log_real_df.loc[log_real_df['concept:name']==a,'time:timestamp'], log_sim_df.loc[log_sim_df['concept:name']==a,'start:timestamp'])])
+        delta_starts_weighted[a] = np.mean([abs(a_i-b_i) for a_i,b_i in zip(log_real_df.loc[log_real_df['concept:name']==a,'time:timestamp'], log_sim_df.loc[log_sim_df['concept:name']==a,'start:timestamp'])])/len(log_real_df.loc[log_real_df['concept:name']==a,'time:timestamp'])
+
+    return delta_starts_median, delta_starts_mean, np.mean(list(delta_starts_weighted.values()))

@@ -3,6 +3,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 #log_path = 'data/purchasing_example.xes'
 #log = xes_importer.apply(log_path)
@@ -48,8 +49,8 @@ for a in activities:
                 
                 
 
-alpha_comparison = True
-iteration_comparison = True
+alpha_comparison = False
+iteration_comparison = False
 
 if alpha_comparison:
         for a in activities:
@@ -73,3 +74,28 @@ if iteration_comparison:
                 g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
                 plt.savefig('data/plot_comparison_alpha/comparison_errors_iterations{}.png'.format(a))
                 plt.show()
+
+y_pos = np.arange(len(activities))
+g = sns.boxplot(data=full_data[full_data.Method=='Multi Alpha Update'], x='Activity', y='W.Distance')
+#g.set_xticklabels(g.get_xticklabels(), rotation=90)
+g.set_title('Wasserstein Distance wrt the Activity\n Bisection method update')
+plt.xticks(y_pos, activities, rotation=90)
+plt.subplots_adjust(bottom=0.3)
+plt.savefig('data/plot_comparison_alpha/box_plot_errors_multi.png')
+plt.show()
+
+g = sns.boxplot(data=full_data[full_data.Method=='Single Alpha Update'], x='Activity', y='W.Distance')
+#g.set_xticklabels(g.get_xticklabels(), rotation=90)
+plt.xticks(y_pos, activities, rotation=90)
+plt.subplots_adjust(bottom=0.3)
+g.set_title('Wasserstein Distance wrt the Activity\n single update')
+plt.savefig('data/plot_comparison_alpha/box_plot_errors_single.png')
+plt.show()
+
+g = sns.boxplot(data=full_data[full_data.Method=='Shuffle Single Alpha Update'], x='Activity', y='W.Distance')
+#g.set_xticklabels(g.get_xticklabels(), rotation=90)
+plt.xticks(y_pos, activities, rotation=90)
+plt.subplots_adjust(bottom=0.3)
+g.set_title('Wasserstein Distance wrt the Activity\n Single update with shuffled activites')
+plt.savefig('data/plot_comparison_alpha/box_plot_errors_shuffle.png')
+plt.show()

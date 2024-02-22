@@ -23,7 +23,7 @@ log_path = 'data/purchasing_example.xes'
 starting_at = '2011-01-01T00:00:00.000000+00:00'
 N_iterations = 1
 delta = 0.05
-shuffle_activities = True
+shuffle_activities = False
 
 log = xes_importer.apply(log_path)
 log = pm4py.filter_event_attribute_values(log, 'lifecycle:transition', ['complete'], level="event", retain=True)
@@ -153,12 +153,16 @@ else:
 
 if shuffle_activities:
     df_log_alpha_one_shuffle = pd.read_csv('data/log_alpha_one_shuffle.csv')
-    time_difference = compute_start_difference(df_log_alpha_one_shuffle)
-    print('\nTime-delta between real log and single update with shuffled activities:', time_difference)
+    time_difference_median, time_difference_mean, time_difference_weighted = compute_start_difference(df_log_alpha_one_shuffle)
+    print('\n\nTime-delta between real log and single update with shuffled activities (median):\n\n', time_difference_median)
+    print('\n\nTime-delta between real log and single update with shuffled activities (mean):\n\n', time_difference_mean)
+    print('\n\nTime-delta between real log and single update with shuffled activities (weighted):\n\n', time_difference_weighted)
 else:
     df_log_alpha_one = pd.read_csv('data/log_alpha_one.csv')
-    time_difference = compute_start_difference(df_log_alpha_one)
-    print('\nTime-delta between real log and single update:', time_difference)
+    time_difference_median, time_difference_mean, time_difference_weighted = compute_start_difference(df_log_alpha_one)
+    print('\n\nTime-delta between real log and single update (median):\n\n', time_difference_median)
+    print('\n\nTime-delta between real log and single update (mean):\n\n', time_difference_mean)
+    print('\n\nTime-delta between real log and single update (weighted):\n\n', time_difference_weighted)
 
 
 #-------------------------------------------------

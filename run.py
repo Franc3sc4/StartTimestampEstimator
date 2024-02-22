@@ -133,8 +133,10 @@ print('\nBest Wasserstein distances:', best_errors)
 
 #------------------------------------------------------
 # start:timestamp comparison
-time_difference = compute_start_difference(df_log_alpha)
-print('\nTime-delta between real log and multi update:', time_difference)
+time_difference_median, time_difference_mean, time_difference_weighted = compute_start_difference(df_log_alpha)
+print('\n\nTime-delta between real log and update with bisection method (median):\n\n', time_difference_median)
+print('\n\nTime-delta between real log and update with bisection method (mean):\n\n', time_difference_mean)
+print('\n\nTime-delta between real log and update with bisection method (weighted):\n\n', time_difference_weighted)
 
 #------------------------------------------------------
 # df saving
@@ -175,3 +177,4 @@ if plot_:
         g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
         plt.savefig('data/plot_multi_alpha/run_errors_{}.png'.format(a))
         plt.show()
+
