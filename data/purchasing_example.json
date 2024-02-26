@@ -2312,9 +2312,45 @@
     "arrival_time_calendar": [
             {
                 "from": "MONDAY",
+                "to": "MONDAY",
+                "beginTime": "00:00:00",
+                "endTime": "23:59:59.999000"
+            },
+            {
+                "from": "TUESDAY",
+                "to": "TUESDAY",
+                "beginTime": "00:00:00",
+                "endTime": "23:59:59.999000"
+            },
+            {
+                "from": "WEDNESDAY",
+                "to": "WEDNESDAY",
+                "beginTime": "00:00:00",
+                "endTime": "23:59:59.999000"
+            },
+            {
+                "from": "THURSDAY",
+                "to": "THURSDAY",
+                "beginTime": "00:00:00",
+                "endTime": "23:59:59.999000"
+            },
+            {
+                "from": "FRIDAY",
+                "to": "FRIDAY",
+                "beginTime": "00:00:00",
+                "endTime": "23:59:59.999000"
+            },
+            {
+                "from": "SATURDAY",
+                "to": "SATURDAY",
+                "beginTime": "00:00:00",
+                "endTime": "23:59:59.999000"
+            },
+            {
+                "from": "SUNDAY",
                 "to": "SUNDAY",
                 "beginTime": "00:00:00",
-                "endTime": "23:59:59"
+                "endTime": "23:59:59.999000"
             }
         ]
     ,
@@ -4492,8 +4528,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4504,8 +4576,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4516,9 +4624,45 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
                     "beginTime": "00:00:00",
-                    "endTime": "23:59:59"
+                    "endTime": "11:59:59"
                 }
             ]
         },
@@ -4528,9 +4672,45 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
                     "beginTime": "00:00:00",
-                    "endTime": "23:59:59"
+                    "endTime": "11:59:59"
                 }
             ]
         },
@@ -4540,9 +4720,45 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
                     "beginTime": "00:00:00",
-                    "endTime": "23:59:59"
+                    "endTime": "11:59:59"
                 }
             ]
         },
@@ -4552,9 +4768,45 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
                     "beginTime": "00:00:00",
-                    "endTime": "23:59:59"
+                    "endTime": "11:59:59"
                 }
             ]
         },
@@ -4564,8 +4816,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4576,8 +4864,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4588,8 +4912,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4600,8 +4960,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4612,9 +5008,45 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
                     "beginTime": "00:00:00",
-                    "endTime": "23:59:59"
+                    "endTime": "11:59:59"
                 }
             ]
         },
@@ -4624,9 +5056,45 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
                     "beginTime": "00:00:00",
-                    "endTime": "23:59:59"
+                    "endTime": "11:59:59"
                 }
             ]
         },
@@ -4636,8 +5104,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4648,9 +5152,45 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
                     "beginTime": "00:00:00",
-                    "endTime": "23:59:59"
+                    "endTime": "11:59:59"
                 }
             ]
         },
@@ -4660,8 +5200,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4672,9 +5248,45 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
                     "beginTime": "00:00:00",
-                    "endTime": "23:59:59"
+                    "endTime": "11:59:59"
                 }
             ]
         },
@@ -4684,8 +5296,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4696,8 +5344,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4708,8 +5392,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4720,9 +5440,45 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
-                    "endTime": "23:59:59"
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
                 }
             ]
         },
@@ -4732,8 +5488,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4744,8 +5536,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4756,9 +5584,45 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
                     "beginTime": "00:00:00",
-                    "endTime": "23:59:59"
+                    "endTime": "11:59:59"
                 }
             ]
         },
@@ -4768,9 +5632,45 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
                     "beginTime": "00:00:00",
-                    "endTime": "23:59:59"
+                    "endTime": "11:59:59"
                 }
             ]
         },
@@ -4780,9 +5680,45 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
-                    "endTime": "23:59:59"
+                    "beginTime": "06:00:00",
+                    "endTime": "17:59:59"
                 }
             ]
         },
@@ -4792,8 +5728,44 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "12:00:00",
+                    "endTime": "23:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
-                    "beginTime": "00:00:00",
+                    "beginTime": "12:00:00",
                     "endTime": "23:59:59"
                 }
             ]
@@ -4804,9 +5776,45 @@
             "time_periods": [
                 {
                     "from": "MONDAY",
+                    "to": "MONDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "TUESDAY",
+                    "to": "TUESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "WEDNESDAY",
+                    "to": "WEDNESDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "THURSDAY",
+                    "to": "THURSDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "FRIDAY",
+                    "to": "FRIDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SATURDAY",
+                    "to": "SATURDAY",
+                    "beginTime": "00:00:00",
+                    "endTime": "11:59:59"
+                },
+                {
+                    "from": "SUNDAY",
                     "to": "SUNDAY",
                     "beginTime": "00:00:00",
-                    "endTime": "23:59:59"
+                    "endTime": "11:59:59"
                 }
             ]
         }
