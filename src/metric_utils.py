@@ -86,6 +86,7 @@ def compute_wass_dist_waiting_time(log_real, log_sim_df):
         log_sim_a = log_sim_df[log_sim_df['activity'] == a]
         a_sim[a] = list((pd.to_datetime(log_sim_a['start_time']) - pd.to_datetime(log_sim_a['enable_time'])).apply(lambda x: x.total_seconds()))
 
+    a_real[list(activities.keys())[0]] = a_sim[list(activities.keys())[0]].copy()
     wass_distances = dict()
     for a in list(activities.keys()):
         try:

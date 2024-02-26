@@ -6,6 +6,7 @@ from src.utils import set_start_timestamp_from_alpha
 from src.temporal_utils import find_execution_distributions
 from src.metric_utils import compute_wass_dist_execution, compute_wass_err, compute_wass_dist_waiting_time, compute_start_difference
 import pm4py
+import timeit
 import random
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -23,8 +24,10 @@ log_path = 'data/purchasing_example.xes'
 starting_at = '2011-01-01T00:00:00.000000+00:00'
 N_iterations = 1
 delta = 0.05
-shuffle_activities = False
+shuffle_activities = True
+waiting_distance = True
 
+start = timeit.default_timer()
 log = xes_importer.apply(log_path)
 log = pm4py.filter_event_attribute_values(log, 'lifecycle:transition', ['complete'], level="event", retain=True)
 
@@ -70,7 +73,10 @@ def compute_distance(alphas_best, log=log, json_data=json_data, diffsim_info=dif
     min_case_id = int(total_cases*perc/2)
     max_case_id = min_case_id+gen_cases
     log_sim_df = log_sim_df[(log_sim_df["case_id"]>min_case_id) & (log_sim_df["case_id"]<=max_case_id)]
-    err_cycle = compute_wass_err(log, log_sim_df)
+    if waiting_distance:
+        err_cycle = compute_wass_dist_waiting_time(log, log_sim_df)
+    else:    
+        err_cycle = compute_wass_err(log, log_sim_df)
    # print('Cycle time Avg Wasserstein distance: {}'.format(err_cycle))
 
     return err_cycle
@@ -101,9 +107,14 @@ def next_succ(alpha, delta, trial=3):
 #alphas_best = {a: round(random.random(),2) for a in activities}
 alphas_best = {a: 0.5 for a in activities}
 epsilon_best = compute_distance(alphas_best)
-
 alphas_track = {a:[0.5] for a in activities}
 errors_track = {a:[epsilon_best[a]] for a in activities}
+
+# variables for saving results that uses the waiting time distance
+alphas_best_W = {a: 0.5 for a in activities}
+epsilon_best_W = compute_distance(alphas_best)
+alphas_track_W = {a:[0.5] for a in activities}
+errors_track_W = {a:[epsilon_best[a]] for a in activities}
 
 for a in activities:
     print('\nActivity:',a)
@@ -124,15 +135,22 @@ for a in activities:
                     else:
                         Q_next = [x for x in Q_next if x>alpha[a]]
                     alphas_best[a] = alpha[a]
-                    
                 if epsilon[a] >= epsilon_best[a]: 
                     if alpha[a]<alphas_best[a]:
                         Q_next = [x for x in Q_next if x>alphas_best[a]]
                     if alpha[a]>alphas_best[a]:
                         Q_next = [x for x in Q_next if x<alphas_best[a]]
+
+
+stop = timeit.default_timer()
+if waiting_distance:
+    print('It had been used the waiting time distance\n\n')
+else:
+    print('It had been used the Wasserstain distance\n\n')
     
-print("Best alphas", alphas_best)
-print("Best Wasserstein distances", epsilon_best)
+print('\nExecution time: {} minutes and {} seconds'.format(divmod(stop-start, 60)[0],divmod(stop-start, 60)[1])) # ~ 12' 10"
+print("\nBest alphas", alphas_best)
+print("\nBest Wasserstein distances", epsilon_best)
 #-------------------------------------------------
 # df saving
 data_df = pd.DataFrame(columns = ["Activity", "Alpha", "W.Distance"])

@@ -9,6 +9,7 @@ import pm4py
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import timeit
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -22,7 +23,9 @@ log_path = 'data/purchasing_example.xes'
 starting_at = '2011-01-01T00:00:00.000000+00:00'
 N_iterations = 20
 save_log_alpha= True
+waiting_distance = True
 
+start = timeit.default_timer()
 log = xes_importer.apply(log_path)
 log = pm4py.filter_event_attribute_values(log, 'lifecycle:transition', ['complete'], level="event", retain=True)
 
@@ -61,6 +64,7 @@ for i in range(N_iterations):
 
     json_data, diffsim_info = update_sim_params(json_data, diffsim_info, best_distr_act_execution)
 
+
     run_simulation(
         diffsim_info,
         log_out_path = "data/simulated_log.csv",
@@ -75,8 +79,13 @@ for i in range(N_iterations):
     # print('Execution Activities Avg Wasserstein distance: ', round(err_ex, 2))
     
     err_cycle = compute_wass_err(log, log_sim_df)
-    errors.append(err_cycle.copy())
-    errors_track.append(err_cycle.copy())
+    err_wt = compute_wass_dist_waiting_time(log, log_sim_df)
+    if waiting_distance:
+        errors.append(err_wt.copy())
+        errors_track.append(err_wt.copy())
+    else:
+        errors.append(err_cycle.copy())
+        errors_track.append(err_cycle.copy())
 
     if i>=2:    
         for a in activities:
@@ -112,10 +121,10 @@ for i in range(N_iterations):
             print('no more minimum')
             break
 
-#print('Alphas Tot: {}\n'.format(alphas_tot))
 
 # extract the best values of alpha for minimizing the wasserstein distance
-            
+stop = timeit.default_timer()
+
 best_alphas = {a:0 for a in activities}
 best_errors = {a:0 for a in activities}
 for a in activities:
@@ -128,6 +137,12 @@ for a in activities:
     index_min = min(range(len(L)), key=L.__getitem__)
     best_alphas[a] = alphas_tot[index_min][a]
 
+if waiting_distance:
+    print('It had been used the waiting time distance\n\n')
+else:
+    print('It had been used the Wasserstain distance\n\n')
+
+print('\nExecution time: {} minutes and {} seconds'.format(divmod(stop-start, 60)[0],divmod(stop-start, 60)[1])) # 2'48"
 print('\nBest alphas:', best_alphas)
 print('\nBest Wasserstein distances:', best_errors)
 
