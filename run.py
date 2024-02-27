@@ -1,4 +1,4 @@
-# Execution time: 2 mins 30 secs
+# Execution time: 2 mins 30 secs, 4 mins 48 secs
 
 from prosimos.simulation_engine import *
 import json
@@ -151,7 +151,7 @@ def run_framework(log_path, bpmn_path, json_path, output_path, starting_at, perc
     print('\nBest alphas:', best_alphas)
     print('\nBest Wasserstein distances:', best_errors)
 
-    return df_log_alpha, alphas_track, errors_track, activities
+    return df_log_alpha, alphas_track, errors_track
 
 
 if __name__ == '__main__':

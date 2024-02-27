@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from src.metric_utils import compute_start_difference
 from run import run_framework
 
 import argparse
@@ -27,8 +28,9 @@ N_iterations = args.N_max_iteration
 output_path = args.output_path
 
 
-df_log_alpha, alphas_track, errors_track, activities = run_framework(log_path, bpmn_path, json_path, output_path, starting_at, perc_head_tail, N_iterations)
+df_log_alpha, alphas_track, errors_track = run_framework(log_path, bpmn_path, json_path, output_path, starting_at, perc_head_tail, N_iterations)
 
+activities = list(df_log_alpha["concept:name"].unique())
 
 #------------------------------------------------------
 # start:timestamp comparison
@@ -74,10 +76,8 @@ if plot_:
         data_a = data_df.loc[data_df.Activity==a,:]
         g = sns.lineplot(data=data_a, x='Alpha', y='W.Distance', markers=True, style="Activity")
         g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
-        plt.savefig(output_path + '/plot_multi_alpha/run_errors_{}.png'.format(a))
+        plt.savefig(output_path + '/plots/run_errors_{}.png'.format(a))
         plt.show()
-
-##############################
 
 
 

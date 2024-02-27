@@ -1,4 +1,4 @@
-# Execution time: 6 mins 19 secs
+# Execution time: 6 mins 19 secs, 10 mins 7 secs, 16 mins 23 secs
 
 from prosimos.simulation_engine import *
 import json
@@ -26,7 +26,7 @@ parser.add_argument('--output_path', type=str, default='results/bisection')
 parser.add_argument('--starting_at', type=str, default='2011-01-01T00:00:00.000000+00:00')
 parser.add_argument('--perc_head_tail', type=float, default=.1)
 parser.add_argument('--delta', type=float, default=.1)
-parser.add_argument('--shuffle_activities', type=bool, default=True)
+parser.add_argument('--shuffle_activities', type=bool, default=False)
 
 args = parser.parse_args()
 
@@ -46,11 +46,11 @@ def compute_distance(alphas_best, log, json_data, output_path, diffsim_info, per
     log = set_start_timestamp_from_alpha(log, alphas_best)
 
     if shuffle_activities:
-        df_log_alpha_one_shuffle = pm4py.convert_to_dataframe(log)
-        df_log_alpha_one_shuffle.to_csv(output_path + '/log_alpha_one_shuffle.csv', index=False)
+        df_log_alpha = pm4py.convert_to_dataframe(log)
+        df_log_alpha.to_csv(output_path + '/log_alpha_one_shuffle.csv', index=False)
     else:
-        df_log_alpha_one = pm4py.convert_to_dataframe(log)
-        df_log_alpha_one.to_csv(output_path + '/log_alpha_one.csv', index=False)
+        df_log_alpha = pm4py.convert_to_dataframe(log)
+        df_log_alpha.to_csv(output_path + '/log_alpha_one.csv', index=False)
 
     best_distr_act_execution = find_execution_distributions(log)
 
@@ -68,7 +68,7 @@ def compute_distance(alphas_best, log, json_data, output_path, diffsim_info, per
     log_sim_df = log_sim_df[(log_sim_df["case_id"]>min_case_id) & (log_sim_df["case_id"]<=max_case_id)]
     err_cycle = compute_error_sota(log, log_sim_df)
 
-    return err_cycle
+    return err_cycle, df_log_alpha
 
 
 def prev_succ(alpha, delta, trial=3):
@@ -115,7 +115,7 @@ def run_framework(log_path, bpmn_path, json_path, output_path, delta, starting_a
 
     start = timeit.default_timer()
     alphas_best = {a: round(random.random(),2) for a in activities}
-    epsilon_best = compute_distance(alphas_best, log, json_data, output_path, diffsim_info, perc_head_tail, gen_cases, starting_at)
+    epsilon_best, df_log_alpha = compute_distance(alphas_best, log, json_data, output_path, diffsim_info, perc_head_tail, gen_cases, starting_at)
     alphas_track = {a: [v] for a,v in alphas_best.items()}
     errors_track = [epsilon_best]
 
@@ -129,7 +129,7 @@ def run_framework(log_path, bpmn_path, json_path, output_path, delta, starting_a
             if alpha[a] not in Q_tried:
                 Q_tried.append(alpha[a])
                 alphas_track[a].append(alpha[a])
-                epsilon = compute_distance(alphas_best, log, json_data, output_path, diffsim_info, perc_head_tail, gen_cases, starting_at)
+                epsilon, df_log_alpha = compute_distance(alphas_best, log, json_data, output_path, diffsim_info, perc_head_tail, gen_cases, starting_at)
                 errors_track.append(epsilon)
                 if epsilon < epsilon_best: # abs(epsilon[a]-epsilon_best[a]) < 60*60 : check per fermare le iterazioni
                     if alpha[a]<alphas_best[a]:
@@ -148,6 +148,8 @@ def run_framework(log_path, bpmn_path, json_path, output_path, delta, starting_a
     print('\nExecution time: {} minutes and {} seconds'.format(divmod(stop-start, 60)[0],divmod(stop-start, 60)[1])) # ~ 12' 10"
     print("\nBest alphas", alphas_best)
     print("\nBest Wasserstein distances", epsilon_best)
+
+    return df_log_alpha, alphas_track, errors_track
 
 
 if __name__ == '__main__':

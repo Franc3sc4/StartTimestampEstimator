@@ -5,35 +5,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-#log_path = 'data/purchasing_example.xes'
-#log = xes_importer.apply(log_path)
-#log = pm4py.filter_event_attribute_values(log, 'lifecycle:transition', ['complete'], level="event", retain=True)
-#activities = list(pm4py.get_event_attribute_values(log, "concept:name").keys())
-activities = ['Create Purchase Requisition',
- 'Create Request for Quotation',
- 'Analyze Request for Quotation',
- 'Send Request for Quotation to Supplier',
- 'Create Quotation comparison Map',
- 'Analyze Quotation Comparison Map',
- 'Choose best option',
- 'Settle Conditions With Supplier',
- 'Create Purchase Order',
- 'Confirm Purchase Order',
- 'Deliver Goods Services',
- 'Release Purchase Order',
- 'Approve Purchase Order for payment',
- 'Send Invoice',
- "Release Supplier's Invoice",
- "Authorize Supplier's Invoice payment",
- 'Pay Invoice',
- 'Amend Request for Quotation',
- 'Settle Dispute With Supplier',
- 'Analyze Purchase Requisition',
- 'Amend Purchase Requisition']
-
 data_df = pd.read_csv('data/data_multi_update.csv')
 data_one_df = pd.read_csv('data/data_single_update.csv')
 data_one_shuffle_df = pd.read_csv('data/data_single_update_shuffle.csv')
+
+activities = list(data_df.Activity.unique())
 
 data_df.loc[:,'Method'] = 'Multi Alpha Update'
 data_one_df.loc[:,'Method'] = 'Single Alpha Update'
