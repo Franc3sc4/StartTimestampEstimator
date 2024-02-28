@@ -24,13 +24,13 @@ args = parser.parse_args()
 #args.json_path = 'data/Production_Case_Study/production.json'
 #output_path = 'results/Production_Case_Study/bisection'
 
-bpmn_path = 'data/Production_Case_Study/production.bpmn' #args.bpmn_path
-json_path =  'data/Production_Case_Study/production.json'#args.json_path
+bpmn_path = args.bpmn_path #'data/Production_Case_Study/production.bpmn' 
+json_path = args.json_path #'data/Production_Case_Study/production.json'
 perc_head_tail = args.perc_head_tail
-log_path = 'data/Production_Case_Study/production.xes' #args.log_path
+log_path = args.log_path #'data/Production_Case_Study/production.xes'
 starting_at = args.starting_at
 N_iterations = args.N_max_iteration
-output_path = 'results/Production_Case_Study/bisection' #args.output_path
+output_path = args.output_path #'results/Production_Case_Study/bisection'
 
 
 df_log_alpha, alphas_track, errors_track = run_framework(log_path, bpmn_path, json_path, output_path, starting_at, perc_head_tail, N_iterations)
@@ -82,4 +82,5 @@ if plot_:
 # Production Case Study
 # WD : 84641.10453089906
 
-
+# Purchase Process Case Study
+# WD : 49149.22296238147
