@@ -8,10 +8,10 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--log_path', type=str, default='data/purchasing_example.xes')
-parser.add_argument('--bpmn_path', type=str, default='data/purchasing_example.bpmn')
-parser.add_argument('--json_path', type=str, default='data/purchasing_example.json')
-parser.add_argument('--output_path', type=str, default='results/bisection')
+parser.add_argument('--log_path', type=str, default='data/Purchase_Process_Case_Study/purchasing_example.xes')
+parser.add_argument('--bpmn_path', type=str, default='data/Purchase_Process_Case_Study/purchasing_example.bpmn')
+parser.add_argument('--json_path', type=str, default='data/Purchase_Process_Case_Study/purchasing_example.json')
+parser.add_argument('--output_path', type=str, default='results/Purchase_Process_Case_Study/bisection')
 parser.add_argument('--starting_at', type=str, default='2011-01-01T00:00:00.000000+00:00')
 parser.add_argument('--perc_head_tail', type=float, default=.1)
 parser.add_argument('--N_max_iteration', type=int, default=20)
@@ -19,25 +19,24 @@ parser.add_argument('--N_max_iteration', type=int, default=20)
 
 args = parser.parse_args()
 
-bpmn_path = args.bpmn_path
-json_path = args.json_path
+#args.log_path = 'data/Production_Case_Study/production.xes'
+#args.bpmn_path = 'data/Production_Case_Study/production.bpmn'
+#args.json_path = 'data/Production_Case_Study/production.json'
+#output_path = 'results/Production_Case_Study/bisection'
+
+bpmn_path = 'data/Production_Case_Study/production.bpmn' #args.bpmn_path
+json_path =  'data/Production_Case_Study/production.json'#args.json_path
 perc_head_tail = args.perc_head_tail
-log_path = args.log_path
+log_path = 'data/Production_Case_Study/production.xes' #args.log_path
 starting_at = args.starting_at
 N_iterations = args.N_max_iteration
-output_path = args.output_path
+output_path = 'results/Production_Case_Study/bisection' #args.output_path
 
 
 df_log_alpha, alphas_track, errors_track = run_framework(log_path, bpmn_path, json_path, output_path, starting_at, perc_head_tail, N_iterations)
 
 activities = list(df_log_alpha["concept:name"].unique())
 
-#------------------------------------------------------
-# start:timestamp comparison
-time_difference_median, time_difference_mean, time_difference_weighted = compute_start_difference(df_log_alpha)
-print('\n\nTime-delta between real log and update with bisection method (median):\n\n', time_difference_median)
-print('\n\nTime-delta between real log and update with bisection method (mean):\n\n', time_difference_mean)
-print('\n\nTime-delta between real log and update with bisection method (weighted):\n\n', time_difference_weighted)
 
 #------------------------------------------------------
 # df saving
@@ -80,6 +79,7 @@ if plot_:
         plt.show()
 
 
-
+# Production Case Study
+# WD : 84641.10453089906
 
 

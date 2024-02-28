@@ -7,23 +7,28 @@ from run_sota import run_framework
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--log_path', type=str, default='data/purchasing_example.xes')
-parser.add_argument('--bpmn_path', type=str, default='data/purchasing_example.bpmn')
-parser.add_argument('--json_path', type=str, default='data/purchasing_example.json')
-parser.add_argument('--output_path', type=str, default='results/single')
+parser.add_argument('--log_path', type=str, default='data/Purchase_Process_Case_Study/purchasing_example.xes')
+parser.add_argument('--bpmn_path', type=str, default='data/Purchase_Process_Case_Study/purchasing_example.bpmn')
+parser.add_argument('--json_path', type=str, default='data/Purchase_Process_Case_Study/purchasing_example.json')
+parser.add_argument('--output_path', type=str, default='results/Purchase_Process_Case_Study/single')
 parser.add_argument('--starting_at', type=str, default='2011-01-01T00:00:00.000000+00:00')
 parser.add_argument('--perc_head_tail', type=float, default=.1)
 parser.add_argument('--delta', type=float, default=.1)
-parser.add_argument('--shuffle_activities', type=bool, default=False)
+parser.add_argument('--shuffle_activities', type=bool, default=True)
 
 args = parser.parse_args()
 
-bpmn_path = args.bpmn_path
-json_path = args.json_path
+#args.log_path = 'data/Production_Case_Study/production.xes'
+#args.bpmn_path = 'data/Production_Case_Study/production.bpmn'
+#args.json_path = 'data/Production_Case_Study/production.json'
+#output_path = 'results/Production_Case_Study/single'
+
+bpmn_path = 'data/Production_Case_Study/production.bpmn' #args.bpmn_path
+json_path = 'data/Production_Case_Study/production.json' #args.json_path
 perc_head_tail = args.perc_head_tail
-log_path = args.log_path
+log_path = 'data/Production_Case_Study/production.xes' #args.log_path
 starting_at = args.starting_at
-output_path = args.output_path
+output_path = 'results/Production_Case_Study/single' #args.output_path
 delta = args.delta
 shuffle_activities = args.shuffle_activities
 
@@ -46,22 +51,6 @@ if shuffle_activities:
 else:
     data_df.to_csv(output_path + "/data_single_update.csv")
 
-#-------------------------------------------------
-# start:timestamp comparison
-
-if shuffle_activities:
-    df_log_alpha_one_shuffle = pd.read_csv(output_path + '/log_alpha_one_shuffle.csv')
-    time_difference_median, time_difference_mean, time_difference_weighted = compute_start_difference(df_log_alpha)
-    print('\n\nTime-delta between real log and single update with shuffled activities (median):\n\n', time_difference_median)
-    print('\n\nTime-delta between real log and single update with shuffled activities (mean):\n\n', time_difference_mean)
-    print('\n\nTime-delta between real log and single update with shuffled activities (weighted):\n\n', time_difference_weighted)
-else:
-    df_log_alpha_one = pd.read_csv( output_path + '/log_alpha_one.csv')
-    time_difference_median, time_difference_mean, time_difference_weighted = compute_start_difference(df_log_alpha)
-    print('\n\nTime-delta between real log and single update (median):\n\n', time_difference_median)
-    print('\n\nTime-delta between real log and single update (mean):\n\n', time_difference_mean)
-    print('\n\nTime-delta between real log and single update (weighted):\n\n', time_difference_weighted)
-
 
 #-------------------------------------------------
 # plot creation
@@ -78,3 +67,12 @@ if plot_:
         else:
             plt.savefig(output_path + '/plots/run_one_alpha_errors_{}.png'.format(a))
             plt.show()
+
+
+# Purchase Process Case Study
+# WD :
+# WD shuffle:
+
+# Production Case Study
+# WD : 4818908.352438595
+# WD shuffle: 19272414.628929906

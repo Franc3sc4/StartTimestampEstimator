@@ -1,4 +1,5 @@
-# Execution time: 6 mins 19 secs, 10 mins 7 secs, 16 mins 23 secs
+# Execution time Purchase Process Case Study: 6 mins 19 secs, 10 mins 7 secs, 16 mins 23 secs
+# Execution time Prduction Case Study: 7 mins 24 secs
 
 from prosimos.simulation_engine import *
 import json
@@ -19,16 +20,21 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--log_path', type=str, default='data/purchasing_example.xes')
-parser.add_argument('--bpmn_path', type=str, default='data/purchasing_example.bpmn')
-parser.add_argument('--json_path', type=str, default='data/purchasing_example.json')
-parser.add_argument('--output_path', type=str, default='results/bisection')
+parser.add_argument('--log_path', type=str, default='data/Purchase_Process_Case_Study/purchasing_example.xes')
+parser.add_argument('--bpmn_path', type=str, default='data/Purchase_Process_Case_Study/purchasing_example.bpmn')
+parser.add_argument('--json_path', type=str, default='data/Purchase_Process_Case_Study/purchasing_example.json')
+parser.add_argument('--output_path', type=str, default='results/Purchase_Process_Case_Study/single')
 parser.add_argument('--starting_at', type=str, default='2011-01-01T00:00:00.000000+00:00')
 parser.add_argument('--perc_head_tail', type=float, default=.1)
 parser.add_argument('--delta', type=float, default=.1)
-parser.add_argument('--shuffle_activities', type=bool, default=False)
+parser.add_argument('--shuffle_activities', type=bool, default=True)
 
 args = parser.parse_args()
+
+args.log_path = 'data/Production_Case_Study/production.xes'
+args.bpmn_path = 'data/Production_Case_Study/production.bpmn'
+args.json_path = 'data/Production_Case_Study/production.json'
+output_path = 'results/Production_Case_Study/single'
 
 bpmn_path = args.bpmn_path
 json_path = args.json_path

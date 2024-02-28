@@ -1,4 +1,5 @@
-# Execution time: 2 mins 30 secs, 4 mins 48 secs
+# Execution time Purchase Process Case Study: 2 mins 30 secs, 4 mins 48 secs
+# Execution time Prduction Case Study: 2 mins 4 secs
 
 from prosimos.simulation_engine import *
 import json
@@ -18,16 +19,21 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--log_path', type=str, default='data/purchasing_example.xes')
-parser.add_argument('--bpmn_path', type=str, default='data/purchasing_example.bpmn')
-parser.add_argument('--json_path', type=str, default='data/purchasing_example.json')
-parser.add_argument('--output_path', type=str, default='results/bisection')
+parser.add_argument('--log_path', type=str, default='data/Purchase_Process_Case_Study/purchasing_example.xes')
+parser.add_argument('--bpmn_path', type=str, default='data/Purchase_Process_Case_Study/purchasing_example.bpmn')
+parser.add_argument('--json_path', type=str, default='data/Purchase_Process_Case_Study/purchasing_example.json')
+parser.add_argument('--output_path', type=str, default='results/Purchase_Process_Case_Study/bisection')
 parser.add_argument('--starting_at', type=str, default='2011-01-01T00:00:00.000000+00:00')
 parser.add_argument('--perc_head_tail', type=float, default=.1)
 parser.add_argument('--N_max_iteration', type=int, default=20)
 
 
 args = parser.parse_args()
+
+args.log_path = 'data/Production_Case_Study/production.xes'
+args.bpmn_path = 'data/Production_Case_Study/production.bpmn'
+args.json_path = 'data/Production_Case_Study/production.json'
+output_path = 'results/Production_Case_Study/bisection'
 
 bpmn_path = args.bpmn_path
 json_path = args.json_path
@@ -54,8 +60,11 @@ def run_framework(log_path, bpmn_path, json_path, output_path, starting_at, perc
     with open(json_path) as json_file:
         json_data = json.load(json_file)
 
-    diffsim_info = SimDiffSetup(bpmn_path, json_path, is_event_added_to_log=False, total_cases=total_cases)
-
+    diffsim_info = SimDiffSetup(bpmn_path, json_path, is_event_added_to_log=False, total_cases=total_cases)  
+    
+    #activities_sim = [diffsim_info.bpmn_graph.element_info[e].name for e in diffsim_info.bpmn_graph.element_info.keys() if diffsim_info.bpmn_graph.element_info[e].type == BPMN.TASK]
+    #activities_not_included = [a for a in activities if a not in activities_sim]
+    
     alphas_tot = [{a: 0 for a in activities}, {a: 1 for a in activities}]
     errors = []
 
@@ -150,6 +159,7 @@ def run_framework(log_path, bpmn_path, json_path, output_path, starting_at, perc
     print('\nExecution time: {} minutes and {} seconds'.format(divmod(stop-start, 60)[0],divmod(stop-start, 60)[1])) # 2'48"
     print('\nBest alphas:', best_alphas)
     print('\nBest Wasserstein distances:', best_errors)
+    print('\nBest Wasserstein distance mean: ',np.mean(list(best_errors.values())))
 
     return df_log_alpha, alphas_track, errors_track
 

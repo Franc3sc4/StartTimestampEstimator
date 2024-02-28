@@ -33,6 +33,12 @@ def compute_wass_err(log_real, log_sim_df):
             else:
                 act = trace_activities[j]
                 cycle_time_sim[act].append(0)
+    
+    for a in list(activities.keys()):
+        if cycle_time_sim[a]==[]:
+            cycle_time_sim[a]=[0]*len(cycle_time_real[a])
+        else:
+            continue
 
     return {a: wasserstein_distance(cycle_time_real[a], cycle_time_sim[a]) for a in list(activities.keys())}
 
@@ -70,6 +76,12 @@ def compute_error_sota(log_real, log_sim_df):
                 act = trace_activities[j]
                 wt_time_sim[act].append(0)
         cycle_time_sim.append((trace_end_times[-1] - trace_start_times[0]).total_seconds())
+
+    for a in list(activities.keys()):
+        if wt_time_sim[a]==[]:
+            wt_time_sim[a]=[0]*len(wt_time_real[a])
+        else:
+            continue
 
     wt_time_errors = {a: wasserstein_distance(wt_time_real[a], wt_time_sim[a]) for a in list(activities.keys())}
     
