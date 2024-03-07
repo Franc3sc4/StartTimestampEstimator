@@ -19,10 +19,10 @@ parser.add_argument('--N_max_iteration', type=int, default=20)
 
 args = parser.parse_args()
 
-#args.log_path = 'data/Production_Case_Study/production.xes'
-#args.bpmn_path = 'data/Production_Case_Study/production.bpmn'
-#args.json_path = 'data/Production_Case_Study/production.json'
-#output_path = 'results/Production_Case_Study/bisection'
+args.log_path = 'data/Production_Case_Study/production.xes'
+args.bpmn_path = 'data/Production_Case_Study/production.bpmn'
+args.json_path = 'data/Production_Case_Study/production.json'
+output_path = 'results/Production_Case_Study/bisection'
 
 bpmn_path = args.bpmn_path #'data/Production_Case_Study/production.bpmn' 
 json_path = args.json_path #'data/Production_Case_Study/production.json'
@@ -62,7 +62,7 @@ for a in activities:
         new_row = {"Activity":a, "Alpha":data[a][0][i], "W.Distance":data[a][1][i]}
         data_df.loc[len(data_df)] = new_row
 
-data_df.to_csv(output_path + "/data_multi_update.csv")
+data_df.to_csv(output_path + "/data_bisection_update.csv")
 
 
 #-------------------------------------

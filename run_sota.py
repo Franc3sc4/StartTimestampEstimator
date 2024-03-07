@@ -1,5 +1,5 @@
-# Execution time Purchase Process Case Study: 6 mins 19 secs, 10 mins 7 secs, 16 mins 23 secs
-# Execution time Prduction Case Study: 7 mins 24 secs
+# Execution time Purchase Process Case Study: 6 mins 19 secs, 10 mins 7 secs, 8 mins 7 secs
+# Execution time Production Case Study: 7 mins 24 secs, 9 mins 41 secs
 
 from prosimos.simulation_engine import *
 import json
@@ -27,21 +27,22 @@ parser.add_argument('--output_path', type=str, default='results/Purchase_Process
 parser.add_argument('--starting_at', type=str, default='2011-01-01T00:00:00.000000+00:00')
 parser.add_argument('--perc_head_tail', type=float, default=.1)
 parser.add_argument('--delta', type=float, default=.1)
-parser.add_argument('--shuffle_activities', type=bool, default=True)
+parser.add_argument('--shuffle_activities', type=bool, default=False)
 
 args = parser.parse_args()
 
-args.log_path = 'data/Production_Case_Study/production.xes'
-args.bpmn_path = 'data/Production_Case_Study/production.bpmn'
-args.json_path = 'data/Production_Case_Study/production.json'
-output_path = 'results/Production_Case_Study/single'
+bpmn_path = 'data/Production_Case_Study/production.bpmn'
+json_path = 'data/Production_Case_Study/production.json'
+log_path = 'data/Production_Case_Study/production.xes'
+output_path = 'results/Production_Case_Study/single' 
 
-bpmn_path = args.bpmn_path
-json_path = args.json_path
+#bpmn_path = args.bpmn_path
+#json_path = args.json_path
+#log_path = args.log_path
+#output_path = args.output_path
+
 perc_head_tail = args.perc_head_tail
-log_path = args.log_path
 starting_at = args.starting_at
-output_path = args.output_path
 delta = args.delta
 shuffle_activities = args.shuffle_activities
 
@@ -121,14 +122,18 @@ def run_framework(log_path, bpmn_path, json_path, output_path, delta, starting_a
 
     start = timeit.default_timer()
     alphas_best = {a: round(random.random(),2) for a in activities}
-    epsilon_best, df_log_alpha = compute_distance(alphas_best, log, json_data, output_path, diffsim_info, perc_head_tail, gen_cases, starting_at)
-    alphas_track = {a: [v] for a,v in alphas_best.items()}
-    errors_track = [epsilon_best]
+    errors_track = {a: [] for a in activities}
+    i = 0
 
     for a in activities:
         print('\nActivity:',a)
         Q_tried = [alphas_best[a]]
         Q_next = prev_succ(alphas_best[a], delta)+next_succ(alphas_best[a], delta)
+        epsilon_best, df_log_alpha = compute_distance(alphas_best, log, json_data, output_path, diffsim_info, perc_head_tail, gen_cases, starting_at)
+        if i==0:
+            alphas_track = {a: [v] for a,v in alphas_best.items()}
+            i+=1
+        errors_track[a].append(epsilon_best)
         while Q_next!=[]:
             alpha = alphas_best.copy()
             alpha[a] = Q_next.pop(0)
@@ -136,14 +141,15 @@ def run_framework(log_path, bpmn_path, json_path, output_path, delta, starting_a
                 Q_tried.append(alpha[a])
                 alphas_track[a].append(alpha[a])
                 epsilon, df_log_alpha = compute_distance(alphas_best, log, json_data, output_path, diffsim_info, perc_head_tail, gen_cases, starting_at)
-                errors_track.append(epsilon)
-                if epsilon < epsilon_best: # abs(epsilon[a]-epsilon_best[a]) < 60*60 : check per fermare le iterazioni
+                errors_track[a].append(epsilon)
+                if epsilon <= epsilon_best:
                     if alpha[a]<alphas_best[a]:
                         Q_next = [x for x in Q_next if x<alpha[a]]
                     else:
                         Q_next = [x for x in Q_next if x>alpha[a]]
                     alphas_best[a] = alpha[a]
-                if epsilon >= epsilon_best: 
+                    epsilon_best = epsilon.copy()
+                if epsilon > epsilon_best: 
                     if alpha[a]<alphas_best[a]:
                         Q_next = [x for x in Q_next if x>alphas_best[a]]
                     if alpha[a]>alphas_best[a]:

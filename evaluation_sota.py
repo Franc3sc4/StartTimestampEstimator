@@ -14,21 +14,22 @@ parser.add_argument('--output_path', type=str, default='results/Purchase_Process
 parser.add_argument('--starting_at', type=str, default='2011-01-01T00:00:00.000000+00:00')
 parser.add_argument('--perc_head_tail', type=float, default=.1)
 parser.add_argument('--delta', type=float, default=.1)
-parser.add_argument('--shuffle_activities', type=bool, default=True)
+parser.add_argument('--shuffle_activities', type=bool, default=False)
 
 args = parser.parse_args()
 
-#args.log_path = 'data/Production_Case_Study/production.xes'
-#args.bpmn_path = 'data/Production_Case_Study/production.bpmn'
-#args.json_path = 'data/Production_Case_Study/production.json'
-#output_path = 'results/Production_Case_Study/single'
+#bpmn_path = args.bpmn_path
+#json_path = args.json_path
+#log_path = args.log_path
+#output_path = args.output_path
 
-bpmn_path = 'data/Production_Case_Study/production.bpmn' #args.bpmn_path
-json_path = 'data/Production_Case_Study/production.json' #args.json_path
+bpmn_path = 'data/Production_Case_Study/production.bpmn'
+json_path = 'data/Production_Case_Study/production.json'
+log_path = 'data/Production_Case_Study/production.xes'
+output_path = 'results/Production_Case_Study/single' 
+
 perc_head_tail = args.perc_head_tail
-log_path = 'data/Production_Case_Study/production.xes' #args.log_path
 starting_at = args.starting_at
-output_path = 'results/Production_Case_Study/single' #args.output_path
 delta = args.delta
 shuffle_activities = args.shuffle_activities
 
@@ -42,7 +43,7 @@ data_df = pd.DataFrame(columns = ["Activity", "Alpha", "W.Distance"])
 
 for a in activities:
     for i in range(len(alphas_track[a])):
-        new_row = {"Activity":a, "Alpha":alphas_track[a][i], "W.Distance":errors_track[i]}
+        new_row = {"Activity":a, "Alpha":alphas_track[a][i], "W.Distance":errors_track[a][i]}
         data_df.loc[len(data_df)] = new_row
 
 
@@ -71,8 +72,8 @@ if plot_:
 
 # Purchase Process Case Study
 # WD :
-# WD shuffle:
+# WD shuffle: 937811.228871315
 
 # Production Case Study
-# WD : 4818908.352438595
-# WD shuffle: 19272414.628929906
+# WD : 1506595.6116978354
+# WD shuffle: 17354048.409436677

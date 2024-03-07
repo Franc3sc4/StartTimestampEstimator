@@ -1,59 +1,69 @@
 ,Activity,Alpha,W.Distance
-0,Settle Dispute With Supplier,0.21,35385282.37965796
-1,Settle Dispute With Supplier,0.11,40207863.1575738
-2,Settle Dispute With Supplier,0.31,42421528.87574628
-3,Analyze Purchase Requisition,0.92,35385282.37965796
-4,Analyze Purchase Requisition,0.82,40207863.1575738
-5,Create Purchase Requisition,0.51,35385282.37965796
-6,Create Purchase Requisition,0.41,40207863.1575738
-7,Create Purchase Requisition,0.61,42421528.87574628
-8,Create Purchase Requisition,0.71,38621945.94628723
-9,Create Request for Quotation,0.52,35385282.37965796
-10,Create Request for Quotation,0.42,40207863.1575738
-11,Create Request for Quotation,0.62,42421528.87574628
-12,Amend Purchase Requisition,0.58,35385282.37965796
-13,Amend Purchase Requisition,0.48,40207863.1575738
-14,Amend Purchase Requisition,0.68,42421528.87574628
-15,Choose best option,0.56,35385282.37965796
-16,Choose best option,0.46,40207863.1575738
-17,Choose best option,0.36,42421528.87574628
-18,Analyze Quotation Comparison Map,0.48,35385282.37965796
-19,Analyze Quotation Comparison Map,0.38,40207863.1575738
-20,Analyze Quotation Comparison Map,0.58,42421528.87574628
-21,Release Purchase Order,0.44,35385282.37965796
-22,Release Purchase Order,0.34,40207863.1575738
-23,Release Purchase Order,0.24,42421528.87574628
-24,Create Purchase Order,0.04,35385282.37965796
-25,Create Purchase Order,0.14,40207863.1575738
-26,Approve Purchase Order for payment,0.8,35385282.37965796
-27,Approve Purchase Order for payment,0.7,40207863.1575738
-28,Approve Purchase Order for payment,0.9,42421528.87574628
-29,Send Request for Quotation to Supplier,0.2,35385282.37965796
-30,Send Request for Quotation to Supplier,0.1,40207863.1575738
-31,Authorize Supplier's Invoice payment,0.86,35385282.37965796
-32,Authorize Supplier's Invoice payment,0.76,40207863.1575738
-33,Authorize Supplier's Invoice payment,0.96,42421528.87574628
-34,Pay Invoice,0.07,35385282.37965796
-35,Pay Invoice,0.17,40207863.1575738
-36,Deliver Goods Services,0.48,35385282.37965796
-37,Deliver Goods Services,0.38,40207863.1575738
-38,Deliver Goods Services,0.28,42421528.87574628
-39,Amend Request for Quotation,0.82,35385282.37965796
-40,Amend Request for Quotation,0.72,40207863.1575738
-41,Amend Request for Quotation,0.92,42421528.87574628
-42,Analyze Request for Quotation,0.8,35385282.37965796
-43,Analyze Request for Quotation,0.7,40207863.1575738
-44,Analyze Request for Quotation,0.9,42421528.87574628
-45,Settle Conditions With Supplier,0.07,35385282.37965796
-46,Settle Conditions With Supplier,0.17,40207863.1575738
-47,Settle Conditions With Supplier,0.27,42421528.87574628
-48,Release Supplier's Invoice,0.03,35385282.37965796
-49,Release Supplier's Invoice,0.13,40207863.1575738
-50,Create Quotation comparison Map,0.94,35385282.37965796
-51,Create Quotation comparison Map,0.84,40207863.1575738
-52,Confirm Purchase Order,0.6,35385282.37965796
-53,Confirm Purchase Order,0.5,40207863.1575738
-54,Confirm Purchase Order,0.7,42421528.87574628
-55,Send Invoice,0.44,35385282.37965796
-56,Send Invoice,0.34,40207863.1575738
-57,Send Invoice,0.54,42421528.87574628
+0,Create Purchase Requisition,0.09,25922176.44963592
+1,Create Purchase Requisition,0.19,29873634.040670235
+2,Create Request for Quotation,0.23,28404351.96267311
+3,Create Request for Quotation,0.13,31627662.22092831
+4,Create Request for Quotation,0.33,25627893.57838993
+5,Create Request for Quotation,0.43,25197726.002711277
+6,Create Request for Quotation,0.53,29138059.18382046
+7,Analyze Request for Quotation,0.53,23932464.488658115
+8,Analyze Request for Quotation,0.43,24092546.41243705
+9,Analyze Request for Quotation,0.63,27390406.80530555
+10,Send Request for Quotation to Supplier,0.37,29546890.759943657
+11,Send Request for Quotation to Supplier,0.27,25873368.971131794
+12,Send Request for Quotation to Supplier,0.17,29517179.270518642
+13,Create Quotation comparison Map,0.44,28593374.679655615
+14,Create Quotation comparison Map,0.34,25279385.747972135
+15,Create Quotation comparison Map,0.24,21489472.276017018
+16,Create Quotation comparison Map,0.14,29592316.207785442
+17,Analyze Quotation Comparison Map,0.5,24785884.369141728
+18,Analyze Quotation Comparison Map,0.4,22902290.005737476
+19,Analyze Quotation Comparison Map,0.3,30172304.60603109
+20,Choose best option,0.94,23183532.314613692
+21,Choose best option,0.84,26104077.957191207
+22,Settle Conditions With Supplier,0.97,27610955.94304539
+23,Settle Conditions With Supplier,0.87,24963927.581928138
+24,Settle Conditions With Supplier,0.77,25809856.227880836
+25,Create Purchase Order,0.3,25927388.698005114
+26,Create Purchase Order,0.2,28758998.32382343
+27,Create Purchase Order,0.4,24030336.034703664
+28,Create Purchase Order,0.5,30339005.557395354
+29,Confirm Purchase Order,0.01,25686787.385867525
+30,Confirm Purchase Order,0.11,32289765.91960745
+31,Deliver Goods Services,0.39,24523862.08429264
+32,Deliver Goods Services,0.29,23528219.676742975
+33,Deliver Goods Services,0.19,24080087.04385698
+34,Release Purchase Order,0.71,23308479.248815633
+35,Release Purchase Order,0.61,25275570.748507448
+36,Release Purchase Order,0.81,22764192.506568357
+37,Release Purchase Order,0.91,26919448.48998725
+38,Approve Purchase Order for payment,0.45,28647976.81030095
+39,Approve Purchase Order for payment,0.35,27884263.057464357
+40,Approve Purchase Order for payment,0.25,24958975.121338204
+41,Approve Purchase Order for payment,0.15,23301002.274113115
+42,Send Invoice,0.08,28397788.973231725
+43,Send Invoice,0.18,25352346.549794506
+44,Send Invoice,0.28,27838549.359826457
+45,Release Supplier's Invoice,0.76,23701373.319658615
+46,Release Supplier's Invoice,0.66,29557367.424918104
+47,Release Supplier's Invoice,0.86,27528746.48591044
+48,Authorize Supplier's Invoice payment,0.26,25953185.328139715
+49,Authorize Supplier's Invoice payment,0.16,21326572.84061099
+50,Authorize Supplier's Invoice payment,0.06,23026361.28208309
+51,Pay Invoice,0.69,23646223.93235157
+52,Pay Invoice,0.59,22089246.83977913
+53,Pay Invoice,0.49,27530848.9432978
+54,Amend Request for Quotation,0.34,28134696.20331033
+55,Amend Request for Quotation,0.24,22792243.249659188
+56,Amend Request for Quotation,0.14,24364996.244327065
+57,Settle Dispute With Supplier,0.52,28110635.587585714
+58,Settle Dispute With Supplier,0.42,27689546.73088278
+59,Settle Dispute With Supplier,0.32,24108543.800846722
+60,Settle Dispute With Supplier,0.22,28943336.665542565
+61,Analyze Purchase Requisition,0.5,30754560.42672786
+62,Analyze Purchase Requisition,0.4,27168133.880301822
+63,Analyze Purchase Requisition,0.3,26929784.002773542
+64,Analyze Purchase Requisition,0.2,26169145.874516718
+65,Amend Purchase Requisition,0.75,29278428.085992355
+66,Amend Purchase Requisition,0.65,25573023.576634735
+67,Amend Purchase Requisition,0.55,33117999.304210264
