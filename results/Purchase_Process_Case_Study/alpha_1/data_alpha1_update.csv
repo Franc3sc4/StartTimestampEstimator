@@ -1,0 +1,22 @@
+,Activity,Alpha,W.Distance
+0,Create Purchase Requisition,1,0.0
+1,Create Request for Quotation,1,8393.919401632753
+2,Analyze Request for Quotation,1,11799239.611848958
+3,Send Request for Quotation to Supplier,1,13888538.370846841
+4,Create Quotation comparison Map,1,13208852.44142436
+5,Analyze Quotation Comparison Map,1,16570.848965079043
+6,Choose best option,1,10285.363638403183
+7,Settle Conditions With Supplier,1,11221284.657310689
+8,Create Purchase Order,1,8962148.8913422
+9,Confirm Purchase Order,1,3179175.834324376
+10,Deliver Goods Services,1,4232106.976250401
+11,Release Purchase Order,1,21739.95483593488
+12,Approve Purchase Order for payment,1,4678016.80523293
+13,Send Invoice,1,5578487.673503486
+14,Release Supplier's Invoice,1,30826.92718744675
+15,Authorize Supplier's Invoice payment,1,20017.696015375328
+16,Pay Invoice,1,22467.680494542645
+17,Amend Request for Quotation,1,12635.107510254094
+18,Settle Dispute With Supplier,1,21224.370150953386
+19,Analyze Purchase Requisition,1,41763.39901163496
+20,Amend Purchase Requisition,1,24402.178632654544

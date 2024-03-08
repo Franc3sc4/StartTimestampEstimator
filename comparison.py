@@ -6,10 +6,10 @@ import seaborn as sns
 import numpy as np
 import argparse
 
-#output_path = 'results/Purchase_Process_Case_Study'
-output_path = 'results/Production_Case_Study'
+output_path = 'results/Purchase_Process_Case_Study'
+#output_path = 'results/Production_Case_Study'
 
-data_df = pd.read_csv(output_path + '/bisection/data_multi_update.csv')
+data_df = pd.read_csv(output_path + '/bisection/data_bisection_update.csv')
 data_one_df = pd.read_csv(output_path + '/single/data_single_update.csv')
 data_one_shuffle_df = pd.read_csv(output_path + '/single/data_single_update_shuffle.csv')
 
@@ -21,6 +21,7 @@ data_one_shuffle_df.loc[:,'Method'] = 'Single Alpha Update (S)'
 
 full_data = pd.concat([data_df, data_one_df, data_one_shuffle_df], ignore_index=True)
 full_data.loc[:,'Iteration'] = 0
+partial_data = pd.concat([data_one_df, data_one_shuffle_df], ignore_index=True)
 
 # add 'Iteration' column
 for a in activities:
@@ -30,11 +31,11 @@ for a in activities:
                 
 
 alpha_comparison = True
-iteration_comparison = True
+iteration_comparison = False
 
 if alpha_comparison:
         for a in activities:
-                data_a = full_data.loc[full_data.Activity==a,:]
+                data_a = partial_data.loc[partial_data.Activity==a,:]
                 g = sns.lineplot(data=data_a, x='Alpha', y='W.Distance', hue = 'Method', markers=True, style = "Method")
                 g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
                 plt.savefig(output_path+'/comparison/comparison_errors_{}.png'.format(a))

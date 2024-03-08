@@ -19,18 +19,20 @@ parser.add_argument('--N_max_iteration', type=int, default=20)
 
 args = parser.parse_args()
 
-args.log_path = 'data/Production_Case_Study/production.xes'
-args.bpmn_path = 'data/Production_Case_Study/production.bpmn'
-args.json_path = 'data/Production_Case_Study/production.json'
+log_path = 'data/Production_Case_Study/production.xes'
+bpmn_path = 'data/Production_Case_Study/production.bpmn'
+json_path = 'data/Production_Case_Study/production.json'
 output_path = 'results/Production_Case_Study/bisection'
 
-bpmn_path = args.bpmn_path #'data/Production_Case_Study/production.bpmn' 
-json_path = args.json_path #'data/Production_Case_Study/production.json'
+
+#log_path = args.log_path 
+#bpmn_path = args.bpmn_path 
+#json_path = args.json_path 
+#output_path = args.output_path 
+
 perc_head_tail = args.perc_head_tail
-log_path = args.log_path #'data/Production_Case_Study/production.xes'
 starting_at = args.starting_at
 N_iterations = args.N_max_iteration
-output_path = args.output_path #'results/Production_Case_Study/bisection'
 
 
 df_log_alpha, alphas_track, errors_track = run_framework(log_path, bpmn_path, json_path, output_path, starting_at, perc_head_tail, N_iterations)
@@ -45,22 +47,15 @@ for a in activities:
     for i in range(len(alphas_track)):
         data[a][0].append(alphas_track[i][a])
         data[a][1].append(errors_track[i][a])
-
-# remove duplicates
-for a in activities:
-    index=[]
-    for i in range(1,len(data[a][0])):
-        if data[a][0][i]==data[a][0][i-1]:
-            index.append(i)
-    data[a][0] = [j for i, j in enumerate(data[a][0]) if i not in index]
-    data[a][1] = [j for i, j in enumerate(data[a][1]) if i not in index]
-    
+   
 
 data_df = pd.DataFrame(columns = ["Activity", "Alpha", "W.Distance"])
 for a in activities:
     for i in range(len(data[a][0])):
         new_row = {"Activity":a, "Alpha":data[a][0][i], "W.Distance":data[a][1][i]}
         data_df.loc[len(data_df)] = new_row
+
+data_df.drop_duplicates(subset=['Activity','Alpha'], inplace=True)
 
 data_df.to_csv(output_path + "/data_bisection_update.csv")
 
@@ -77,10 +72,3 @@ if plot_:
         g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
         plt.savefig(output_path + '/plots/run_errors_{}.png'.format(a))
         plt.show()
-
-
-# Production Case Study
-# WD : 84641.10453089906
-
-# Purchase Process Case Study
-# WD : 49149.22296238147

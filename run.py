@@ -30,18 +30,19 @@ parser.add_argument('--N_max_iteration', type=int, default=20)
 
 args = parser.parse_args()
 
-args.log_path = 'data/Production_Case_Study/production.xes'
-args.bpmn_path = 'data/Production_Case_Study/production.bpmn'
-args.json_path = 'data/Production_Case_Study/production.json'
+log_path = 'data/Production_Case_Study/production.xes'
+bpmn_path = 'data/Production_Case_Study/production.bpmn'
+json_path = 'data/Production_Case_Study/production.json'
 output_path = 'results/Production_Case_Study/bisection'
 
-bpmn_path = args.bpmn_path
-json_path = args.json_path
+#bpmn_path = args.bpmn_path
+#json_path = args.json_path
+#log_path = args.log_path
+#output_path = args.output_path
+
 perc_head_tail = args.perc_head_tail
-log_path = args.log_path
 starting_at = args.starting_at
 N_iterations = args.N_max_iteration
-output_path = args.output_path
 
 
 def run_framework(log_path, bpmn_path, json_path, output_path, starting_at, perc_head_tail, N_iterations):
@@ -72,6 +73,7 @@ def run_framework(log_path, bpmn_path, json_path, output_path, starting_at, perc
     errors_track = []
 
     start = timeit.default_timer()
+    
     for i in range(N_iterations):
         print(i)
         if i == 0:
@@ -103,28 +105,41 @@ def run_framework(log_path, bpmn_path, json_path, output_path, starting_at, perc
         min_case_id = int(total_cases*perc_head_tail/2)
         max_case_id = min_case_id+gen_cases
         log_sim_df = log_sim_df[(log_sim_df["case_id"]>min_case_id) & (log_sim_df["case_id"]<=max_case_id)]
-        
+
         err_cycle = compute_wass_err(log, log_sim_df)
         errors.append(err_cycle.copy())
         errors_track.append(err_cycle.copy())
 
+        if i>=3:
+            for a in activities:
+                if alphas_track[-2][a]==alphas_track[-1][a]:
+                    errors_track[-1][a]=errors_track[-2][a].copy()
+                    errors[-1][a]=errors[-2][a].copy()
+
         if i>=2:    
             for a in activities:
-                if errors[i][a]<errors[1][a] and errors[1][a]<errors[0][a]: # err_i < err_1 < err_0
+                if errors[i][a]==errors[0][a]==errors[1][a]:
+                    continue
+                if errors[i][a]>errors[0][a] and errors[i][a]>errors[1][a]:
+                    continue
+                if errors[i][a]<errors[1][a]<errors[0][a]: # err_i < err_1 < err_0
                     alphas_tot[0][a] = alphas_tot[i][a] # 0: alpha_i, 1: alpha_1 --> err_0 = err_i < err_1
                     errors[0][a] = errors[i][a]
-                if errors[i][a]<errors[0][a] and errors[0][a]<errors[1][a]: # err_i < err_0 < err_1
+                    continue
+                if errors[i][a]<errors[0][a] <errors[1][a]: # err_i < err_0 < err_1
                     alphas_tot[1][a] = alphas_tot[i][a] # 0: alpha_0, 1: alpha_i --> err_1 = err_i < err_0
                     errors[1][a] = errors[i][a]
-                if errors[1][a]<errors[i][a] and errors[i][a]<errors[0][a]: # err_1 < err_i < err_0
+                    continue
+                if errors[1][a]<errors[i][a] <errors[0][a]: # err_1 < err_i < err_0
                     alphas_tot[0][a] = alphas_tot[i][a] # 0: alpha_i, 1: alpha_1 --> err_1 < err_0 = err_i
                     errors[0][a] = errors[i][a]
-                if errors[0][a]<errors[i][a] and errors[i][a]<errors[1][a]: # err_0 < err_i < err_1
+                    continue
+                if errors[0][a]<errors[i][a] <errors[1][a]: # err_0 < err_i < err_1
                     alphas_tot[1][a] = alphas_tot[i][a] # 0: alpha_0, 1: alpha_i --> err_0 < err_i = err_1
                     errors[1][a] = errors[i][a]
-                if (errors[i][a]==errors[0][a]) and (errors[i][a]==errors[1][a]):
                     continue
-                    
+            
+
         # early stopping criterion
         # se non vi è un cambiamento nel valore di alpha nelle ultime 2 iterazioni, per ogni attività, ci si ferma
         x = 0
