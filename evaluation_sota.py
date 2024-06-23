@@ -18,15 +18,15 @@ parser.add_argument('--shuffle_activities', type=bool, default=False)
 
 args = parser.parse_args()
 
-#bpmn_path = args.bpmn_path
-#json_path = args.json_path
-#log_path = args.log_path
-#output_path = args.output_path
+bpmn_path = args.bpmn_path
+json_path = args.json_path
+log_path = args.log_path
+output_path = args.output_path
 
-bpmn_path = 'data/Production_Case_Study/production.bpmn'
-json_path = 'data/Production_Case_Study/production.json'
-log_path = 'data/Production_Case_Study/production.xes'
-output_path = 'results/Production_Case_Study/single' 
+#bpmn_path = 'data/Production_Case_Study/production.bpmn'
+#json_path = 'data/Production_Case_Study/production.json'
+#log_path = 'data/Production_Case_Study/production.xes'
+#output_path = 'results/Production_Case_Study/single' 
 
 perc_head_tail = args.perc_head_tail
 starting_at = args.starting_at
@@ -60,8 +60,8 @@ plot_ = True
 if plot_:
     for a in activities:
         data_one_a = data_df.loc[data_df.Activity==a,:]
-        g = sns.lineplot(data=data_one_a, x='Alpha', y='W.Distance', markers=True, style = "Activity")
-        g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
+        g = sns.lineplot(data=data_one_a, x='Alpha', y='W.Distance', markers=True)
+        #g.set_title('Wasserstein Distance wrt Alpha\nActivity: {}'.format(a))
         if shuffle_activities:
             plt.savefig(output_path + '/plots/run_one_alpha_shuffle_errors_{}.png'.format(a))
             plt.show()
