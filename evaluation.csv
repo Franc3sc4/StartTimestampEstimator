@@ -1,0 +1,158 @@
+,Case_Study,Method,Iteration,time_delta(sec),delta_starts_mean,delta_starts_median
+0,Purchase Process Case Study,bisection,0,11345.478341923457,0 days 00:07:13.902573529,0 days 00:03:00
+1,Purchase Process Case Study,bisection,1,11471.755565303212,0 days 00:07:43.262867647,0 days 00:03:00
+2,Purchase Process Case Study,bisection,2,11430.522425704572,0 days 00:07:57.979779411,0 days 00:03:00
+3,Purchase Process Case Study,bisection,3,10128.097817743173,0 days 00:06:59.220588235,0 days 00:03:00
+4,Purchase Process Case Study,bisection,4,11213.84768066674,0 days 00:07:13.902573529,0 days 00:03:00
+5,Purchase Process Case Study,bisection,5,11048.417699309135,0 days 00:07:28.606617647,0 days 00:03:00
+6,Purchase Process Case Study,bisection,6,11054.503125342691,0 days 00:07:21.257352941,0 days 00:03:00
+7,Purchase Process Case Study,bisection,7,10848.901962934533,0 days 00:08:12.661764705,0 days 00:03:00
+8,Purchase Process Case Study,bisection,8,11002.760829038272,0 days 00:07:13.902573529,0 days 00:03:00
+9,Purchase Process Case Study,bisection,9,11261.598311218335,0 days 00:07:13.902573529,0 days 00:03:00
+10,Purchase Process Case Study,bisection,10,11111.50498958219,0 days 00:07:43.262867647,0 days 00:03:00
+11,Purchase Process Case Study,bisection,11,11080.591621888365,0 days 00:06:59.220588235,0 days 00:03:00
+12,Purchase Process Case Study,bisection,12,11011.702708630331,0 days 00:07:13.902573529,0 days 00:03:00
+13,Purchase Process Case Study,bisection,13,10310.875863581534,0 days 00:07:13.902573529,0 days 00:03:00
+14,Purchase Process Case Study,bisection,14,10952.445662901633,0 days 00:07:13.902573529,0 days 00:03:00
+15,Purchase Process Case Study,bisection,15,11167.540519793836,0 days 00:07:28.606617647,0 days 00:03:00
+16,Purchase Process Case Study,bisection,16,10889.109551485908,0 days 00:08:12.661764705,0 days 00:03:00
+17,Purchase Process Case Study,bisection,17,11160.918631428885,0 days 00:07:57.979779411,0 days 00:03:00
+18,Purchase Process Case Study,bisection,18,11398.4320649194,0 days 00:07:13.902573529,0 days 00:03:00
+19,Purchase Process Case Study,bisection,19,11068.944621120738,0 days 00:07:13.902573529,0 days 00:03:00
+20,Purchase Process Case Study,bisection,20,11119.075885513763,0 days 00:06:59.220588235,0 days 00:03:00
+21,Purchase Process Case Study,bisection,21,11078.316482070402,0 days 00:07:13.902573529,0 days 00:03:00
+22,Purchase Process Case Study,bisection,22,10865.458712578133,0 days 00:06:01.222426470,0 days 00:03:00
+23,Purchase Process Case Study,bisection,23,11099.56760609716,0 days 00:08:12.661764705,0 days 00:03:00
+24,Purchase Process Case Study,bisection,24,11276.39138063384,0 days 00:07:13.902573529,0 days 00:03:00
+25,Purchase Process Case Study,bisection,25,11247.05176006141,0 days 00:07:13.902573529,0 days 00:03:00
+26,Purchase Process Case Study,bisection,26,11041.788682969624,0 days 00:08:12.661764705,0 days 00:03:00
+27,Purchase Process Case Study,bisection,27,10923.191249040465,0 days 00:07:13.902573529,0 days 00:03:00
+28,Purchase Process Case Study,bisection,28,11062.6182695471,0 days 00:07:28.606617647,0 days 00:03:00
+29,Purchase Process Case Study,bisection,29,10956.642394999451,0 days 00:08:12.661764705,0 days 00:03:00
+30,Purchase Process Case Study,single,0,13729.274920495669,0 days 00:08:11.492647058,0 days 00:03:00
+31,Purchase Process Case Study,single,1,23026.43173593596,0 days 00:06:42.180147058,0 days 00:03:00
+32,Purchase Process Case Study,single,2,15076.613663778922,0 days 00:06:46.884191176,0 days 00:03:00
+33,Purchase Process Case Study,single,3,23686.009869503236,0 days 00:07:29.187500,0 days 00:03:00
+34,Purchase Process Case Study,single,4,17752.73330409036,0 days 00:08:09.147058823,0 days 00:03:00
+35,Purchase Process Case Study,single,5,20895.365939247724,0 days 00:07:12.733455882,0 days 00:03:00
+36,Purchase Process Case Study,single,6,22759.31955258252,0 days 00:05:21.584558823,0 days 00:03:00
+37,Purchase Process Case Study,single,7,15931.533501480426,0 days 00:05:24.862132352,0 days 00:03:00
+38,Purchase Process Case Study,single,8,12348.630222612128,0 days 00:07:05.683823529,0 days 00:03:00
+39,Purchase Process Case Study,single,9,24906.969952845706,0 days 00:06:42.180147058,0 days 00:03:00
+40,Purchase Process Case Study,single,10,18596.92926856015,0 days 00:05:56.275735294,0 days 00:03:00
+41,Purchase Process Case Study,single,11,21679.12742625288,0 days 00:08:16.194852941,0 days 00:03:00
+42,Purchase Process Case Study,single,12,15940.311547318785,0 days 00:05:49.981617647,0 days 00:03:00
+43,Purchase Process Case Study,single,13,22947.00328983441,0 days 00:05:35.014705882,0 days 00:03:00
+44,Purchase Process Case Study,single,14,20334.321965127754,0 days 00:05:26.534926470,0 days 00:03:00
+45,Purchase Process Case Study,single,15,16000.224805351463,0 days 00:07:05.683823529,0 days 00:03:00
+46,Purchase Process Case Study,single,16,19324.432942208576,0 days 00:05:54.136029411,0 days 00:03:00
+47,Purchase Process Case Study,single,17,16930.858317798004,0 days 00:07:45.643382352,0 days 00:03:00
+48,Purchase Process Case Study,single,18,19834.044412764557,0 days 00:07:31.511029411,0 days 00:03:00
+49,Purchase Process Case Study,single,19,26660.61815988595,0 days 00:06:35.132352941,0 days 00:03:00
+50,Purchase Process Case Study,single,20,19186.1731549512,0 days 00:05:33.301470588,0 days 00:03:00
+51,Purchase Process Case Study,single,21,14994.554995065248,0 days 00:07:38.593750,0 days 00:03:00
+52,Purchase Process Case Study,single,22,16542.62912600066,0 days 00:06:58.636029411,0 days 00:03:00
+53,Purchase Process Case Study,single,23,15858.050005483057,0 days 00:08:39.698529411,0 days 00:03:00
+54,Purchase Process Case Study,single,24,15361.795262638447,0 days 00:05:35.014705882,0 days 00:03:00
+55,Purchase Process Case Study,single,25,19462.83123149468,0 days 00:07:10.387867647,0 days 00:03:00
+56,Purchase Process Case Study,single,26,17939.755894286653,0 days 00:06:09.634191176,0 days 00:03:00
+57,Purchase Process Case Study,single,27,15947.922250246738,0 days 00:06:42.180147058,0 days 00:03:00
+58,Purchase Process Case Study,single,28,25100.05329531747,0 days 00:08:04.443014705,0 days 00:03:00
+59,Purchase Process Case Study,single,29,20296.93420331177,0 days 00:05:14.696691176,0 days 00:03:00
+60,Production Case Study,single shuffle,0,19600.525386555542,0 days 00:05:17.112132352,0 days 00:03:00
+61,Production Case Study,single shuffle,1,14829.798991117446,0 days 00:07:00.981617647,0 days 00:03:00
+62,Production Case Study,single shuffle,2,19219.25693606755,0 days 00:07:08.007352941,0 days 00:03:00
+63,Production Case Study,single shuffle,3,23097.19102971817,0 days 00:07:33.891544117,0 days 00:03:00
+64,Production Case Study,single shuffle,4,19039.1712907117,0 days 00:05:40.229779411,0 days 00:03:00
+65,Production Case Study,single shuffle,5,17710.114924882113,0 days 00:07:38.593750,0 days 00:03:00
+66,Production Case Study,single shuffle,6,18572.052308367147,0 days 00:05:31.595588235,0 days 00:03:00
+67,Production Case Study,single shuffle,7,23490.09639214826,0 days 00:06:42.180147058,0 days 00:03:00
+68,Production Case Study,single shuffle,8,11927.071389406734,0 days 00:07:52.691176470,0 days 00:03:00
+69,Production Case Study,single shuffle,9,13108.734729685273,0 days 00:07:50.345588235,0 days 00:03:00
+70,Production Case Study,single shuffle,10,20220.743173593597,0 days 00:07:33.891544117,0 days 00:03:00
+71,Production Case Study,single shuffle,11,17121.80557078627,0 days 00:05:14.329044117,0 days 00:03:00
+72,Production Case Study,single shuffle,12,15040.779690755566,0 days 00:07:45.643382352,0 days 00:03:00
+73,Production Case Study,single shuffle,13,19618.909748875973,0 days 00:06:58.636029411,0 days 00:03:00
+74,Production Case Study,single shuffle,14,12444.123478451585,0 days 00:05:44.031250,0 days 00:03:00
+75,Production Case Study,single shuffle,15,18229.540081149247,0 days 00:07:40.939338235,0 days 00:03:00
+76,Production Case Study,single shuffle,16,18262.493584822896,0 days 00:07:24.485294117,0 days 00:03:00
+77,Production Case Study,single shuffle,17,13188.607632415835,0 days 00:07:50.345588235,0 days 00:03:00
+78,Production Case Study,single shuffle,18,25642.261432174582,0 days 00:05:14.329044117,0 days 00:03:00
+79,Production Case Study,single shuffle,19,19063.852725079505,0 days 00:05:33.301470588,0 days 00:03:00
+80,Production Case Study,single shuffle,20,16673.15462221735,0 days 00:06:25.748161764,0 days 00:03:00
+81,Production Case Study,single shuffle,21,19801.739225792302,0 days 00:05:24.862132352,0 days 00:03:00
+82,Production Case Study,single shuffle,22,14960.837153196622,0 days 00:05:28.204044117,0 days 00:03:00
+83,Production Case Study,single shuffle,23,15768.006908652265,0 days 00:05:14.329044117,0 days 00:03:00
+84,Production Case Study,single shuffle,24,19293.942098914355,0 days 00:06:51.586397058,0 days 00:03:00
+85,Production Case Study,single shuffle,25,19419.694484044303,0 days 00:06:49.229779411,0 days 00:03:00
+86,Production Case Study,single shuffle,26,21496.848667617065,0 days 00:05:19.941176470,0 days 00:03:00
+87,Production Case Study,single shuffle,27,23990.154731878494,0 days 00:05:47.950367647,0 days 00:03:00
+88,Production Case Study,single shuffle,28,22055.164162737143,0 days 00:05:38.448529411,0 days 00:03:00
+89,Production Case Study,single shuffle,29,20105.448185108016,0 days 00:08:37.352941176,0 days 00:03:00
+90,Purchase Process Case Study,single alpha=1,29,36979.97587454765,0 days 00:08:42.022058823,0 days 00:03:00
+91,Production Case Study,bisection,0,14176.738542297597,0 days 01:24:30.977011494,0 days 01:07:29
+92,Production Case Study,bisection,1,14449.05269533616,0 days 01:27:59.256704980,0 days 01:04:37
+93,Production Case Study,bisection,2,14253.850999394306,0 days 01:24:24.444444444,0 days 01:03:34.500000
+94,Production Case Study,bisection,3,13225.97940642035,0 days 01:23:06.114942528,0 days 01:04:50.500000
+95,Production Case Study,bisection,4,14228.51342620634,0 days 01:24:30.977011494,0 days 01:07:29
+96,Production Case Study,bisection,5,13178.034726428426,0 days 01:23:06.114942528,0 days 01:04:50.500000
+97,Production Case Study,bisection,6,13304.200484554814,0 days 01:27:59.256704980,0 days 01:04:37
+98,Production Case Study,bisection,7,12960.233393902685,0 days 01:23:45.624521072,0 days 01:03:25.500000
+99,Production Case Study,bisection,8,12825.41449626489,0 days 01:24:30.977011494,0 days 01:07:29
+100,Production Case Study,bisection,9,11136.386836260852,0 days 01:23:23.432950191,0 days 01:04:10
+101,Production Case Study,bisection,10,12786.52675146376,0 days 01:23:06.114942528,0 days 01:04:50.500000
+102,Production Case Study,bisection,11,11659.26367857864,0 days 01:23:06.114942528,0 days 01:04:50.500000
+103,Production Case Study,bisection,12,11112.898849182313,0 days 01:23:24.973180076,0 days 01:06:30.500000
+104,Production Case Study,bisection,13,14697.703613971331,0 days 01:50:09.885057471,0 days 01:03:14.500000
+105,Production Case Study,bisection,14,13092.15788411064,0 days 01:27:59.256704980,0 days 01:04:37
+106,Production Case Study,bisection,15,13245.534423581668,0 days 01:24:24.444444444,0 days 01:03:34.500000
+107,Production Case Study,bisection,16,13338.199273167776,0 days 01:29:07.869731800,0 days 01:12:20.500000
+108,Production Case Study,bisection,17,11206.542095699577,0 days 01:24:30.977011494,0 days 01:07:29
+109,Production Case Study,bisection,18,12880.693317181505,0 days 01:23:06.114942528,0 days 01:04:50.500000
+110,Production Case Study,bisection,19,14470.444982838684,0 days 01:24:30.977011494,0 days 01:07:29
+111,Production Case Study,bisection,20,13245.62507571169,0 days 01:24:30.977011494,0 days 01:07:29
+112,Production Case Study,bisection,21,11987.546335554209,0 days 01:27:59.256704980,0 days 01:04:37
+113,Production Case Study,bisection,22,14495.163133454473,0 days 01:25:57.827586206,0 days 01:04:25
+114,Production Case Study,bisection,23,14393.833636180092,0 days 01:23:06.114942528,0 days 01:04:50.500000
+115,Production Case Study,bisection,24,13176.758732081567,0 days 01:24:24.444444444,0 days 01:03:34.500000
+116,Production Case Study,bisection,25,12930.043609933373,0 days 01:23:06.114942528,0 days 01:04:50.500000
+117,Production Case Study,bisection,26,12786.189582071473,0 days 01:24:30.977011494,0 days 01:07:29
+118,Production Case Study,bisection,27,12609.024833434281,0 days 01:24:24.444444444,0 days 01:03:34.500000
+119,Production Case Study,bisection,28,13633.53341409247,0 days 01:23:23.432950191,0 days 01:04:10
+120,Production Case Study,bisection,29,12078.011911972542,0 days 01:23:09.693486590,0 days 01:05:34.500000
+121,Production Case Study,single,0,29114.56026650515,0 days 07:22:51.632183908,0 days 01:20:00
+122,Production Case Study,single,1,18863.062588330304,0 days 08:25:38.413793103,0 days 01:24:00
+123,Production Case Study,single,2,19900.767413688674,0 days 03:40:10.411877394,0 days 01:14:30
+124,Production Case Study,single,3,17267.502321825155,0 days 01:52:26.752873563,0 days 01:02:37
+125,Production Case Study,single,4,21906.228750252372,0 days 06:21:03.287356321,0 days 01:18:18
+126,Production Case Study,single,5,24889.663032505552,0 days 05:20:16.666666666,0 days 01:20:00
+127,Production Case Study,single,6,20618.404401372904,0 days 05:56:35.846743295,0 days 01:19:54
+128,Production Case Study,single,7,18795.485766202302,0 days 01:24:58.172413793,0 days 01:04:13.500000
+129,Production Case Study,single,8,22989.476680799515,0 days 04:56:17.536398467,0 days 01:20:00
+130,Production Case Study,single,9,29604.59176256814,0 days 03:11:45.001915708,0 days 01:12:33
+131,Production Case Study,single,10,25626.397334948517,0 days 08:51:04.528735632,0 days 01:25:38
+132,Production Case Study,single,11,26246.62447001817,0 days 07:04:14.530651340,0 days 01:20:00
+133,Production Case Study,single,12,27153.15122148193,0 days 04:38:28.998084291,0 days 01:19:31
+134,Production Case Study,single,13,21286.160306884718,0 days 05:38:22.680076628,0 days 01:20:00
+135,Production Case Study,single,14,24212.541893801736,0 days 08:38:21.174329501,0 days 01:24:29.500000
+136,Production Case Study,single,15,21026.140520896428,0 days 07:54:04.655172413,0 days 01:20:00
+137,Production Case Study,single,16,24964.02685241268,0 days 01:47:56.798850574,0 days 01:03:37
+138,Production Case Study,single,17,25184.7227942661,0 days 01:36:21.524904214,0 days 01:03:35.500000
+139,Production Case Study,single,18,29068.78962245104,0 days 08:19:18.065134099,0 days 01:23:30
+140,Production Case Study,single,19,18718.865939834443,0 days 03:06:08.201149425,0 days 01:11:05.500000
+141,Production Case Study,single,20,22326.36119523521,0 days 07:29:04.754789272,0 days 01:20:04.500000
+142,Production Case Study,single,21,19167.67898243489,0 days 01:23:27.417624521,0 days 01:03:36
+143,Production Case Study,single,22,23659.78417120937,0 days 02:11:58.078544061,0 days 01:06:23.500000
+144,Production Case Study,single,23,17472.990308903696,0 days 04:44:24.854406130,0 days 01:20:00
+145,Production Case Study,single,24,15911.062790228145,0 days 02:33:09.390804597,0 days 01:10:12.500000
+146,Production Case Study,single,25,22057.804764789016,0 days 06:14:55.026819923,0 days 01:18:43.500000
+147,Production Case Study,single,26,24049.40864122754,0 days 06:27:12.873563218,0 days 01:18:44
+148,Production Case Study,single,27,19600.469210579446,0 days 01:30:06.637931034,0 days 01:04:09
+149,Production Case Study,single,28,20900.186957399557,0 days 07:41:32.890804597,0 days 01:21:00.500000
+150,Production Case Study,single,29,21952.364829396327,0 days 02:02:01.919540229,0 days 01:02:30
+181,Production Case Study,single alpha=1,29,44487.70442156269,0 days 10:33:51.839080459,0 days 01:29:00
+182,Purchase Process Case Study 2,alpha_log_WT_FIXED_greedy,29,44635.868625945826,0 days 05:36:04.379562043,
+203,Purchase Process Case Study 2,alpha_log_WT_FIXED_MOGAII_001,29,35091.76743941222,0 days 05:36:04.379562043,
+224,Purchase Process Case Study 2,alpha_log_WT_FIXED_MOGAII_005,29,36397.63406075227,0 days 05:36:04.379562043,
+245,Purchase Process Case Study 2,alpha_log_WT_FIXED_NSGAII_001,29,36379.23181927843,0 days 05:36:04.379562043,
+266,Purchase Process Case Study 2,alpha_log_WT_FIXED_NSGAII_005,29,36390.078298059,0 days 05:36:04.379562043,
